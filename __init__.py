@@ -573,39 +573,30 @@ def submitform():
         curplano2 = request.form.get('pno2')
         curpsl2 = request.form.get('psl2')
 
-        session[str('m' + str(x) + 't1')] = session["team1"] = curtno1
-        session[str('m' + str(x) + 'p1')] = session["player1"] = curpla1
-        session[str('m' + str(x) + 'p1no')] = session["player1no"] = curplano1
-        session[str('m' + str(x) + 'p1sl')] = curpsl1
-        if curpsl1 == "1": session["player1target"] = "14"
-        elif curpsl1 == "2": session["player1target"] = "19"
-        elif curpsl1 == "3": session["player1target"] = "25"
-        elif curpsl1 == "4": session["player1target"] = "31"
-        elif curpsl1 == "5": session["player1target"] = "38"
-        elif curpsl1 == "6": session["player1target"] = "46"
-        elif curpsl1 == "7": session["player1target"] = "55"
-        elif curpsl1 == "8": session["player1target"] = "65"
-        elif curpsl1 == "9": session["player1target"] = "75"
+        # Verify data
+        if curtno1 != "Team #" \
+            and curtno2 != "Team #" \
+            and curpsl1 != "Skill Level" \
+            and curpsl2 != "Skill Level" \
+            and curpla1 != "" \
+            and curpla2 != "" \
+            and curplano1 != "" \
+            and curplano2 != "":
 
+            session[str('m' + str(x) + 't1')] = session["team1"] = curtno1
+            session[str('m' + str(x) + 'p1')] = session["player1"] = curpla1
+            session[str('m' + str(x) + 'p1no')] = session["player1no"] = curplano1
+            session[str('m' + str(x) + 'p1sl')] = curpsl1
+            session["player1target"] = str(session["scoretable"]["psl"][str(curpsl1)])
 
-        session[str('m' + str(x) + 't2')] = session["team2"] = curtno2
-        session[str('m' + str(x) + 'p2')] = session["player2"] = curpla2
-        session[str('m' + str(x) + 'p2no')] = session["player2no"] = curplano2
-        if curpsl2 == "1": session["player2target"] = "14"
-        elif curpsl2 == "2": session["player2target"] = "19"
-        elif curpsl2 == "3": session["player2target"] = "25"
-        elif curpsl2 == "4": session["player2target"] = "31"
-        elif curpsl2 == "5": session["player2target"] = "38"
-        elif curpsl2 == "6": session["player2target"] = "46"
-        elif curpsl2 == "7": session["player2target"] = "55"
-        elif curpsl2 == "8": session["player2target"] = "65"
-        elif curpsl2 == "9": session["player2target"] = "75"
+            session[str('m' + str(x) + 't2')] = session["team2"] = curtno2
+            session[str('m' + str(x) + 'p2')] = session["player2"] = curpla2
+            session[str('m' + str(x) + 'p2no')] = session["player2no"] = curplano2
+            session["player2target"] = str(session["scoretable"]["psl"][str(curpsl2)])
 
-
-        session[str('m' + str(x) + 'p2sl')] = curpsl2
+            session[str('m' + str(x) + 'p2sl')] = curpsl2
 
     return redirect(url_for('home'))
-
 
 @app.route('/submitRack', methods=['POST', 'GET'])
 def submitRack():
