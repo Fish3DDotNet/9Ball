@@ -1,0 +1,153 @@
+body {
+    background-color: LightSteelBlue;
+    text-align: center;
+}
+
+table, td, th {
+    border: 1px solid;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.no-m {
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+}
+
+img {
+    margin: 1px 0 1px 0;
+    width: 50px;
+    background-color: LightSteelBlue;
+}
+
+.btn-sml {
+    background-color: LightSteelBlue;
+    color: white;
+    width: 60px;
+    height: 60px;
+}
+
+.btn-sml:hover {
+    background-color: LightSteelBlue;
+    cursor: pointer;
+    color: black;
+}
+
+.bg_green{
+    background-color: Lime;
+}
+
+.bg_AntiqueWhite{
+    background-color: #cfe2ff;
+}
+
+p {
+    color: black;
+    font-family: Shanti;
+    font-size: 1.2em;
+    margin: 2px;
+}
+
+/*
+.input-center {
+    text-align: center;
+}
+
+.bg_green{
+    background-color: Lime;
+}
+
+.bg_AntiqueWhite{
+    background-color: AntiqueWhite;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+col {
+
+}
+
+.center {
+  text-align: center;
+
+}
+
+.width10 {
+  width: 10%;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.medium-txt {
+    font-size: 125%;
+}
+
+.large-txt {
+    font-size: 150%;
+}
+
+
+
+h3 {
+    font-family: Shanti;
+    margin: 5px;
+}
+
+
+
+input {
+    width: autowidth;
+    height: 100%;
+    margin: 1px;
+    border: 1px;
+    font-family: Shanti;
+    text-align: left;
+    font-size: 1.3em;
+    background-color: LightSteelBlue;
+}
+
+input:focus {
+    border: solid 1px gray;
+}
+
+
+.btn-lrg {
+    background-color: LightSteelBlue;
+    color: black;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
+.btn-lrg:hover {
+    background-color: DarkGray;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-med {
+    background-color: LightSteelBlue;
+    color: white;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+}
+
+.btn-med:hover {
+    background-color: LightSteelBlue;
+    cursor: pointer;
+    color: black;
+}
+
+
+*/
+/*
+button {
+    width: 60px;
+    height: 60px;
+}*/

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<br>
+<div class="d-flex justify-content-center vh-100">
+   <form class="w-75" action="submitform" method="post">
+      <div>
+         <div>
+            <select class="form-select" name="tno1" aria-label="Default select example">
+               <option selected>Team #</option>
+               <option value="01">01</option>
+               <option value="02">02</option>
+               <option value="03">03</option>
+               <option value="04">04</option>
+               <option value="05">05</option>
+               <option value="06">06</option>
+               <option value="07">07</option>
+               <option value="08">08</option>
+               <option value="09">09</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+            </select>
+         </div>
+         <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Player Name" name="pname1" aria-label="default input example">
+            <input class="form-control" type="text" placeholder="Player #" name="pno1" aria-label="default input example">
+            <select class="form-select" name="psl1" aria-label="Default select example">
+               <option selected>Skill Level</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+            </select>
+         </div>
+      </div>
+      <div>
+         <div>
+            <select class="form-select" name="tno2" aria-label="Default select example">
+               <option selected>Team #</option>
+               <option value="01">01</option>
+               <option value="02">02</option>
+               <option value="03">03</option>
+               <option value="04">04</option>
+               <option value="05">05</option>
+               <option value="06">06</option>
+               <option value="07">07</option>
+               <option value="08">08</option>
+               <option value="09">09</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+            </select>
+         </div>
+         <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Player Name" name="pname2" aria-label="default input example">
+            <input class="form-control" type="text" placeholder="Player #" name="pno2" aria-label="default input example">
+            <select class="form-select" name="psl2" aria-label="Default select example">
+               <option selected>Skill Level</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+            </select>
+         </div>
+      </div>
+      <div>
+         <input class="btn btn-primary" type="submit" value="Submit">
+      </div>
+   </form>
+</div>
+
+
+
+{% endblock %}

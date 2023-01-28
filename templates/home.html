@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<br>
+<div class="row justify-content-center">
+   <table class="table table-sm table-primary table-striped w-75">
+      <col>
+      <thead>
+         <tr>
+            <th scope="col">Match</th>
+            <th scope="col">Team #</th>
+            <th scope="col">Players</th>
+            <th scope="col">Player #</th>
+            <th scope="col">Skill Level</th>
+            <th scope="col">Innings</th>
+            <th scope="col">Safetys</th>
+            <th scope="col">End Score</th>
+            <th scope="col">Points</th>
+         </tr>
+      </thead>
+      <tr>
+         <td width="5%" class="align-middle" rowspan="2">01</td>
+         <td width="5%">{{m1t1}}</td>
+         <td width="25%" class="text-start">{{m1p1}}</td>
+         <td width="5%">{{m1p1no}}</td>
+         <td width="5%">{{m1p1sl}}</td>
+         <td width="5%" class="align-middle" rowspan="2">{{m1in}}</td>
+         <td width="5%">{{m1p1saf}}</td>
+         <td width="5%">{{m1p1sco}}</td>
+         <td width="5%">{{m1p1poi}}</td>
+      </tr>
+      <tr>
+         <td>{{m1t2}}</td>
+         <td class="text-start">{{m1p2}}</td>
+         <td>{{m1p2no}}</td>
+         <td>{{m1p2sl}}</td>
+         <td>{{m1p2saf}}</td>
+         <td>{{m1p2sco}}</td>
+         <td>{{m1p2poi}}</td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">02</td>
+         <td>{{m2t1}}</td>
+         <td class="text-start">{{m2p1}}</td>
+         <td>{{m2p1no}}</td>
+         <td>{{m2p1sl}}</td>
+         <td class="align-middle" rowspan="2">{{m2in}}</td>
+         <td>{{m2p1saf}}</td>
+         <td>{{m2p1sco}}</td>
+         <td>{{m2p1poi}}</td>
+      </tr>
+      <tr>
+         <td>{{m2t2}}</td>
+         <td class="text-start">{{m2p2}}</td>
+         <td>{{m2p2no}}</td>
+         <td>{{m2p2sl}}</td>
+         <td>{{m2p2saf}}</td>
+         <td>{{m2p2sco}}</td>
+         <td>{{m2p2poi}}</td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">03</td>
+         <td>{{m3t1}}</td>
+         <td width="25%" class="text-start">{{m3p1}}</td>
+         <td>{{m3p1no}}</td>
+         <td>{{m3p1sl}}</td>
+         <td class="align-middle" rowspan="2">{{m3in}}</td>
+         <td>{{m3p1saf}}</td>
+         <td>{{m3p1sco}}</td>
+         <td>{{m3p1poi}}</td>
+      </tr>
+      <tr>
+         <td>{{m3t2}}</td>
+         <td class="text-start">{{m3p2}}</td>
+         <td>{{m3p2no}}</td>
+         <td>{{m3p2sl}}</td>
+         <td>{{m3p2saf}}</td>
+         <td>{{m3p2sco}}</td>
+         <td>{{m3p2poi}}</td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">04</td>
+         <td>{{m4t1}}</td>
+         <td width="25%" class="text-start">{{m4p1}}</td>
+         <td>{{m4p1no}}</td>
+         <td>{{m4p1sl}}</td>
+         <td class="align-middle" rowspan="2">{{m4in}}</td>
+         <td>{{m4p1saf}}</td>
+         <td>{{m4p1sco}}</td>
+         <td>{{m4p1poi}}</td>
+      </tr>
+      <tr>
+         <td>{{m4t2}}</td>
+         <td class="text-start">{{m4p2}}</td>
+         <td>{{m4p2no}}</td>
+         <td>{{m4p2sl}}</td>
+         <td>{{m4p2saf}}</td>
+         <td>{{m4p2sco}}</td>
+         <td>{{m4p2poi}}</td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">05</td>
+         <td>{{m5t1}}</td>
+         <td width="25%" class="text-start">{{m5p1}}</td>
+         <td>{{m5p1no}}</td>
+         <td>{{m5p1sl}}</td>
+         <td class="align-middle" rowspan="2">{{m5in}}</td>
+         <td>{{m5p1saf}}</td>
+         <td>{{m5p1sco}}</td>
+         <td>{{m5p1poi}}</td>
+      </tr>
+      <tr>
+         <td>{{m5t2}}</td>
+         <td class="text-start">{{m5p2}}</td>
+         <td>{{m5p2no}}</td>
+         <td>{{m5p2sl}}</td>
+         <td>{{m5p2saf}}</td>
+         <td>{{m5p2sco}}</td>
+         <td>{{m5p2poi}}</td>
+      </tr>
+   </table>
+
+
+<br>
+
+<!--
+<div class="progress w-75">
+  <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="100" aria-valuemax="0"></div>
+</div>
+-->
+</div>
+
+
+
+{% endblock %}
