@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sessionkey123'
-# JDN steam deck
+
 def updateSession(session):
 
 
@@ -431,11 +431,25 @@ def racks():
 @app.route('/p1safety', methods=['POST', 'GET'])
 def p1safety():
 
+    x = session["currentmatch"]
+    if session["m" + str(x) + "p1saf"] == "-":
+        session["m" + str(x) + "p1saf"] = "0"
+
+
+    session["m" + str(x) + "p1saf"] = str(int(session["m" + str(x) + "p1saf"]) + 1)
+
     return redirect(url_for('racks'))
 
 
 @app.route('/p2safety', methods=['POST', 'GET'])
 def p2safety():
+
+    x = session["currentmatch"]
+    if session["m" + str(x) + "p2saf"] == "-":
+        session["m" + str(x) + "p2saf"] = "0"
+
+
+    session["m" + str(x) + "p2saf"] = str(int(session["m" + str(x) + "p2saf"]) + 1)
 
     return redirect(url_for('racks'))
 
@@ -443,7 +457,7 @@ def p2safety():
 @app.route('/inning', methods=['POST', 'GET'])
 def inning():
 
-    #session['p' + str(plrval) + 'curval'] = session['p' + str(plrval) + 'curval'] + 1
+
 
     x = session["currentrack"]
 
