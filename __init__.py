@@ -215,6 +215,7 @@ def home():
 
 @app.route('/gform')
 def gform():
+
     return render_template('gform.html')
 
 
@@ -549,14 +550,14 @@ def valup():
             session['p2s' + str(i)] = 'bg_AntiqueWhite'
 
         # if Player 1 reaches target highlight all Green
-        if str(session['p1total']) == session['player1target']:
+        if session['p1total'] >= int(session['player1target']):
             if session['p1total'] >= i:
                 session['p1s' + str(i)] = 'bg_green'
             else:
                 session['p1s' + str(i)] = ''
 
         # if Player 2 reaches target highlight all Green
-        if str(session['p2total']) == session['player2target']:
+        if session['p2total'] >= int(session['player2target']):
             if session['p2total'] >= i:
                 session['p2s' + str(i)] = 'bg_green'
             else:
@@ -575,7 +576,6 @@ def valup():
 def submitform():
     if request.method == 'POST':
         x = session["currentmatch"]
-        # getting input with name = fname in HTML form
 
         curtno1 = request.form.get('tno1')
         curpla1 = request.form.get('pname1')
@@ -606,11 +606,15 @@ def submitform():
             session[str('m' + str(x) + 't2')] = session["team2"] = curtno2
             session[str('m' + str(x) + 'p2')] = session["player2"] = curpla2
             session[str('m' + str(x) + 'p2no')] = session["player2no"] = curplano2
+            session[str('m' + str(x) + 'p2sl')] = curpsl2
             session["player2target"] = str(session["scoretable"]["psl"][str(curpsl2)])
 
-            session[str('m' + str(x) + 'p2sl')] = curpsl2
 
-    return redirect(url_for('home'))
+
+            return redirect(url_for('home'))
+
+        else:
+            return redirect(url_for('home'))
 
 @app.route('/submitRack', methods=['POST', 'GET'])
 def submitRack():

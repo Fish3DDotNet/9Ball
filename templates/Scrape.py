@@ -10,7 +10,7 @@ driver = webdriver.Chrome(
 
 # Get the website
 driver.get(
-    "https://league.poolplayers.com/inland/divisions/352523/rosters/")
+    "https://accounts.poolplayers.com/login")
 
 # Make Python sleep for some time
 sleep(2)
