@@ -7,7 +7,7 @@ import csv
 
 
 # defining the function to convert CSV file to JSON file
-def convjson(csvFilename, jsonFilename):
+def convjson(csvFilename):
     # creating a dictionary
     teams = {}
     t = {}
@@ -40,15 +40,25 @@ def convjson(csvFilename, jsonFilename):
                 if last_line_number == 2:
                     teams.update(t)
             last_line_number -= 1
-    # filenames
 
-
+    return teams
 csvFilename = r'teams.txt'
-jsonFilename = r'mydatalist.json'
+
 
 # Calling the convjson function
-convjson(csvFilename, jsonFilename)
+teams = convjson(csvFilename)
 
+teamlist = []
+print(teams.keys())
+
+for i in teams.keys():
+    print("Team : " + i)
+    for x in teams[i].keys():
+        print(x + " - " + teams[i][x]["no"] + " - " + teams[i][x]["sl"])
+
+
+
+pass
 
 
 

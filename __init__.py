@@ -1,12 +1,64 @@
 from flask import Flask, render_template, request, flash, jsonify, \
     url_for, redirect, session, json
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 import time
 import json
 import os
+import csv
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sessionkey123'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 
+db = SQLAlchemy(app)
+
+#create db model
+class Friends(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<name %r>' % self.id
+
+csvFilename = r'teams.txt'
+
+def convjson(csvFilename):
+    # creating a dictionary
+    teams = {}
+    t = {}
+    p = {}
+    # reading the data from CSV file
+    with open(csvFilename, encoding='utf-8') as csvfile:
+        def row_count(filename):
+            with open(filename) as in_file:
+                return sum(1 for _ in in_file)
+
+        csvRead = csv.DictReader(csvfile)
+        last_line_number = row_count(csvFilename)
+        team = "0"
+        # Converting rows into dictionary and adding it to data
+        for rows in csvRead:
+            if rows["Team"] != team:
+                if team == "0":
+                    team = rows["Team"]
+                    t = {rows["Team"]:{}}
+                    t[rows["Team"]].update({rows["name"]: {"no":rows["no"],"sl": rows["sl"]}})
+                elif rows["Team"] != team:
+                    teams.update(t)
+                    team = rows["Team"]
+                    t = {rows["Team"]: {}}
+                    t[rows["Team"]].update({rows["name"]: {"no": rows["no"], "sl": rows["sl"]}})
+                else:
+                    pass
+            else:
+                t[rows["Team"]].update({rows["name"]: {"no":rows["no"],"sl": rows["sl"]}})
+                if last_line_number == 2:
+                    teams.update(t)
+            last_line_number -= 1
+
+    return teams
 def updateSession(session):
 
 
@@ -61,6 +113,8 @@ def updateSession(session):
     if 'currentmatch' not in session:
         session['currentmatch'] = 1
 
+    if 'teams' not in session:
+        session['teams']= convjson(csvFilename)
     # </editor-fold>
 
     # Rack Score sheet
@@ -128,6 +182,54 @@ def updateSession(session):
             session['players'] = {'team1': {'Nelson, Jeff': {'sl': 3,
                                   'no': 2345}, 'Nelson, Jana': {'sl': 2,
                                   'no': 1567}}}
+
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
+def update(id):
+    friend_to_update = Friends.query.get_or_404(id)
+    if request.method == "POST":
+        friend_to_update.name = request.form['name']
+        try:
+            db.session.commit()
+            return redirect('/friends')
+        except:
+            return "There was an error updating!!...."
+    else:
+        return render_template('update.html', friend_to_update=friend_to_update)
+
+@app.route('/delete/<int:id>', methods=['POST', 'GET'])
+def delete(id):
+    friend_to_update = Friends.query.get_or_404(id)
+    if request.method == "POST":
+        db.session.delete(friend_to_update)
+        try:
+            db.session.commit()
+            return redirect('/friends')
+        except:
+            return "There was an error updating!!...."
+    else:
+        return render_template('delete.html', friend_to_update=friend_to_update)
+
+
+@app.route('/friends', methods=['POST', 'GET'])
+def friends():
+
+    if request.method == "POST":
+        friend_name = request.form['name']
+        new_friend = Friends(name=friend_name)
+        try:
+            db.session.add(new_friend)
+            db.session.commit()
+            return redirect('/friends')
+        except:
+            return "There was a error adding Name"
+    else:
+        friends = Friends.query.order_by(Friends.date_created)
+        # for friend in friends:
+        #     db.session.delete(friend)
+        #     db.session.commit()
+        return render_template("friends.html", friends=friends)
+
+
 
 @app.route('/home')
 def home():
@@ -641,7 +743,6 @@ def index():
 
     updateSession(session)
     return redirect(url_for('home'))
-
 
 @app.route('/clear', methods=['POST', 'GET'])
 def clear():

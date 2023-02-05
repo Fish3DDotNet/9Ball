@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<br>
+<form action="/friends" METHOD="POST">
+   <input type="text" placeholder="name" name="name">
+   <input type="submit" value="Add Player" class="btn btn-secondary">
+</form>
+
+<div class="row justify-content-center">
+   <table class="table table-sm table-primary table-striped w-75">
+   {% for friend in friends %}
+   <h4>
+      <tr>
+         <td>
+            <a href="/update/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+            <a href="/delete/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
+         </td>
+         <td>{{ friend.name }}</td>
+      </tr>
+   </h4>
+   {% endfor %}
+   </table>
+</div>
+
+{% endblock %}
