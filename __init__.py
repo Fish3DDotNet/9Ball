@@ -16,13 +16,21 @@ db = SQLAlchemy(app)
 #create db model
 class Friends(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    divno = db.Column(db.Integer, nullable=False)
+    team = db.Column(db.String(10), nullable=False)
     name = db.Column(db.String(200), nullable=False)
+    no = db.Column(db.Integer, nullable=False)
+    sl = db.Column(db.Integer, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return '<name %r>' % self.id
 
-csvFilename = r'teams.txt'
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+csvFilename = os.path.join(SITE_ROOT, 'static/data',
+                                'teams.txt')
+app.app_context().push()
+db.create_all()
 
 def convjson(csvFilename):
     # creating a dictionary
@@ -215,7 +223,14 @@ def friends():
 
     if request.method == "POST":
         friend_name = request.form['name']
-        new_friend = Friends(name=friend_name)
+        friend_divno = 444
+        friend_team = '08'
+        friend_no = 12345
+        friend_sl = 4
+        new_friend = Friends(name=friend_name,
+                             team=friend_team,
+                             no=friend_no,
+                             sl=friend_sl)
         try:
             db.session.add(new_friend)
             db.session.commit()

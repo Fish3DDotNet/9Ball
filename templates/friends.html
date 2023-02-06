@@ -10,14 +10,29 @@
 
 <div class="row justify-content-center">
    <table class="table table-sm table-primary table-striped w-75">
-   {% for friend in friends %}
+
    <h4>
+            <thead>
+         <tr>
+            <th scope="col"></th>
+            <th scope="col">Division #</th>
+            <th scope="col">Team #</th>
+            <th scope="col">Players</th>
+            <th scope="col">Player #</th>
+            <th scope="col">Skill Level</th>
+         </tr>
+      </thead>
+   {% for friend in friends %}
       <tr>
          <td>
             <a href="/update/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
             <a href="/delete/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
          </td>
+         <td>{{ friend.divno }}</td>
+         <td>{{ friend.team }}</td>
          <td>{{ friend.name }}</td>
+         <td>{{ friend.no }}</td>
+         <td>{{ friend.sl }}</td>
       </tr>
    </h4>
    {% endfor %}
