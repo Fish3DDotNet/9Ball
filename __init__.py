@@ -228,6 +228,7 @@ def friends():
         friend_no = 12345
         friend_sl = 4
         new_friend = Friends(name=friend_name,
+                             divno=friend_divno,
                              team=friend_team,
                              no=friend_no,
                              sl=friend_sl)
@@ -236,7 +237,7 @@ def friends():
             db.session.commit()
             return redirect('/friends')
         except:
-            return "There was a error adding Name"
+            return "There was a error adding Player"
     else:
         friends = Friends.query.order_by(Friends.date_created)
         # for friend in friends:
