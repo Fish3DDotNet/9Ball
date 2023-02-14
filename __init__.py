@@ -16,9 +16,10 @@ db = SQLAlchemy(app)
 #create db model
 class Friends(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    divno = db.Column(db.Integer, nullable=False)
-    team = db.Column(db.String(10), nullable=False)
-    name = db.Column(db.String(200), nullable=False)
+    divno = db.Column(db.String(50), nullable=False)
+    teamno = db.Column(db.String(10), nullable=False)
+    team = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(30), nullable=False)
     no = db.Column(db.Integer, nullable=False)
     sl = db.Column(db.Integer, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
@@ -31,6 +32,45 @@ csvFilename = os.path.join(SITE_ROOT, 'static/data',
                                 'teams.txt')
 app.app_context().push()
 db.create_all()
+
+def createdb(csvFilename):
+    with open(csvFilename, encoding='utf-8') as csvfile:
+        # def row_count(filename):
+        #     with open(filename) as in_file:
+        #         return sum(1 for _ in in_file)
+        #
+        # csvRead = csv.DictReader(csvfile)
+        # last_line_number = row_count(csvFilename)
+
+
+        data = list(csv.reader(csvfile, delimiter=","))
+
+    for i in data:
+        print(i[0])
+
+        friend_name = i[3]
+        friend_divno = i[0]
+        friend_teamno = i[1]
+        friend_team = i[2]
+        friend_no = i[4]
+        friend_sl = i[5]
+        new_friend = Friends(name=friend_name,
+                             divno=friend_divno,
+                             teamno=friend_teamno,
+                             team=friend_team,
+                             no=friend_no,
+                             sl=friend_sl)
+        try:
+            db.session.add(new_friend)
+            db.session.commit()
+
+        except:
+            return "There was a error adding Player"
+
+    # for friend in friends:
+    #     db.session.delete(friend)
+    #     db.session.commit()
+
 
 def convjson(csvFilename):
     # creating a dictionary
@@ -121,10 +161,10 @@ def updateSession(session):
     if 'currentmatch' not in session:
         session['currentmatch'] = 1
 
-    if 'teams' not in session:
-        session['teams']= convjson(csvFilename)
+    #if 'teams' not in session:
+        #session['teams']= convjson(csvFilename)
     # </editor-fold>
-
+    #createdb(csvFilename)
     # Rack Score sheet
 
     for i in range(15):
@@ -223,12 +263,14 @@ def friends():
 
     if request.method == "POST":
         friend_name = request.form['name']
-        friend_divno = 444
-        friend_team = '08'
+        friend_divno = 'Thursday Double J - 444'
+        friend_teamno = '08'
+        friend_team = 'Crazy 8s'
         friend_no = 12345
         friend_sl = 4
         new_friend = Friends(name=friend_name,
                              divno=friend_divno,
+                             teamno=friend_teamno,
                              team=friend_team,
                              no=friend_no,
                              sl=friend_sl)

@@ -7,7 +7,8 @@ from selenium.webdriver.common.keys import Keys
 
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-
+import os
+import csv
 from time import sleep
 
 def login():
@@ -29,11 +30,8 @@ def login():
     pw.send_keys(Keys.RETURN)
 
     sleep(2)
-    return driver
 
-def navtopage(driver):
-
-    for i in range(5):
+    for i in range(3):
 
         if i == 0:
             np = driver.find_element(By.CLASS_NAME, 'button_button__1lvaa')
@@ -41,65 +39,91 @@ def navtopage(driver):
             np = driver.find_element(By.LINK_TEXT, 'APA of Spokane')
         elif i == 2:
             np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/ul/li[3]/a')
-        elif i == 3:
-            np = driver.find_element(By.XPATH,
-                                     '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div/a[4]')
-            sleep(3)
-            pi = driver.find_elements(By.XPATH, '//h4')
-            for i in range(len(pi)):
-                print(pi[i].accessible_name)
-            print("")
-
-        elif i == 4:
-            np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/ul/li[2]/a')
 
         np.send_keys(Keys.RETURN)
         sleep(3)
-    pi = driver.find_element(By.XPATH,  '//*[@id="wrapper"]/div[3]/div[2]/div/div[1]/div/div/h4/span[text()]')
-    print("")
-    print(pi.text)
+
+    return driver
+
+def navtopage(driver,d):
+
+    np = driver.find_element(By.XPATH,
+                             '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div/a[4]')
+
+    np.send_keys(Keys.RETURN)
+
+
+    # pi = driver.find_elements(By.XPATH, '//h4')
+    # for i in range(len(pi)):
+    #     print(pi[i].accessible_name)
+    # print("")
+
+    sleep(3)
+
+    np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/ul/li[2]/a')
+
+    np.send_keys(Keys.RETURN)
+
+    # pi = driver.find_element(By.XPATH,  '//*[@id="wrapper"]/div[3]/div[2]/div/div[1]/div/div/h4/span[text()]')
+    # print("")
+    # print(pi.text)
 
 def getdata(driver,t):
+
 
     # np = driver.find_elements(By.XPATH, '//h3')
     # for i in  range(len(np)):
     #     print(np[i].accessible_name)
+    div = 'Sat Double Jeopardy'
+    divno = 446
+
+    team = driver.find_element(By.XPATH,
+                               '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[' + str(
+                                   t) + ']/div[1]/h3/a')
+    teamname = team.accessible_name[:-5]
+    teamno = team.accessible_name[-4:]
+    teamno = teamno.replace('(', '').replace(')', '')
+
     pi = driver.find_elements(By.XPATH,
                                 '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div['+str(t)+']/div[2]/table/tbody/tr')
     for p in range(len(pi)):
 
-        team = driver.find_element(By.XPATH,
-                                    '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div['+str(t)+']/div[1]/h3/a')
-        teamname = team.accessible_name[:-5]
-        teamno = team.accessible_name[-4:]
-        teamno = teamno.replace('(', '').replace(')','')
-
-
         player = driver.find_element(By.XPATH,
                                  '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div['+str(t)+']/div[2]/table/tbody/tr['+str(p+1)+']/td[1]/div[1]')
-        #print(player.text)
 
         playerno = driver.find_element(By.XPATH,
                                  '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div['+str(t)+']/div[2]/table/tbody/tr['+str(p+1)+']/td[1]/div[2][text()]')
-        #print(playerno.text[-5:])
 
         playersl = driver.find_element(By.XPATH,
                                  '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div['+str(t)+']/div[2]/table/tbody/tr['+str(p+1)+']/td[2]')
-        #print(playersl.text)
 
-        print(teamno + " - " + teamname + " - " + player.text + " - " + playerno.text + " - " + playersl.text)
+        l = str(div + " - " + str(divno)),str(teamno),str(teamname),str(player.text),str(playerno.text[-5:]),str(playersl.text)
+        plist.append(l)
+
+        print(str(div) + " - " + str(divno) + "," + str(teamno) + "," + str(teamname) + "," + str(player.text) + "," + str(playerno.text[-5:]) + "," + str(playersl.text))
+
 def iterate(driver):
     teams = driver.find_elements(By.XPATH, '//h3')
     for t in range(len(teams)-1):
         getdata(driver,t+1)
 
-
-
+plist = []
 driver = login()
 sleep(3)
-navtopage(driver)
+navtopage(driver,5)
 sleep(3)
+
 iterate(driver)
+
+file = open('teams4.txt', 'w+', newline='')
+
+# writing the data into the file
+with file:
+    write = csv.writer(file)
+    write.writerows(plist)
+file.close()
+
+print('hold')
 # getdata()
 # sleep(10)
 #

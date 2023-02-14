@@ -15,8 +15,9 @@
             <thead>
          <tr>
             <th scope="col"></th>
-            <th scope="col">Division #</th>
+            <th scope="col">Division</th>
             <th scope="col">Team #</th>
+            <th scope="col">Team Name</th>
             <th scope="col">Players</th>
             <th scope="col">Player #</th>
             <th scope="col">Skill Level</th>
@@ -29,6 +30,7 @@
             <a href="/delete/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
          </td>
          <td>{{ friend.divno }}</td>
+         <td>{{ friend.teamno }}</td>
          <td>{{ friend.team }}</td>
          <td>{{ friend.name }}</td>
          <td>{{ friend.no }}</td>
