@@ -3,7 +3,7 @@
 {% block content %}
 
 <br>
-<form action="/friends" METHOD="POST">
+<form action="/showteams" METHOD="POST">
    <input type="text" placeholder="name" name="name">
    <input type="submit" value="Add Player" class="btn btn-secondary">
 </form>
@@ -12,7 +12,7 @@
    <table class="table table-sm table-primary table-striped w-75">
 
    <h4>
-            <thead>
+      <thead>
          <tr>
             <th scope="col"></th>
             <th scope="col">Division</th>
@@ -23,18 +23,18 @@
             <th scope="col">Skill Level</th>
          </tr>
       </thead>
-   {% for friend in friends %}
+   {% for team in teams %}
       <tr>
          <td>
-            <a href="/update/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
-            <a href="/delete/{{ friend.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
+            <a href="/update/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+            <a href="/delete/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
          </td>
-         <td>{{ friend.divno }}</td>
-         <td>{{ friend.teamno }}</td>
-         <td>{{ friend.team }}</td>
-         <td>{{ friend.name }}</td>
-         <td>{{ friend.no }}</td>
-         <td>{{ friend.sl }}</td>
+         <td>{{ team.divname }}</td>
+         <td>{{ team.teamno }}</td>
+         <td>{{ team.teamname }}</td>
+         <td>{{ team.playername }}</td>
+         <td>{{ team.playerno }}</td>
+         <td>{{ team.playersl }}</td>
       </tr>
    </h4>
    {% endfor %}

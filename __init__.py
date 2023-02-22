@@ -9,19 +9,19 @@ import csv
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sessionkey123'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///teams.db'
 
 db = SQLAlchemy(app)
 
 #create db model
-class Friends(db.Model):
+class teams(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    divno = db.Column(db.String(50), nullable=False)
+    divname = db.Column(db.String(50), nullable=False)
     teamno = db.Column(db.String(10), nullable=False)
-    team = db.Column(db.String(30), nullable=False)
-    name = db.Column(db.String(30), nullable=False)
-    no = db.Column(db.Integer, nullable=False)
-    sl = db.Column(db.Integer, nullable=False)
+    teamname = db.Column(db.String(30), nullable=False)
+    playername = db.Column(db.String(30), nullable=False)
+    playerno = db.Column(db.Integer, nullable=False)
+    playersl = db.Column(db.Integer, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -48,27 +48,27 @@ def createdb(csvFilename):
     for i in data:
         print(i[0])
 
-        friend_name = i[3]
-        friend_divno = i[0]
-        friend_teamno = i[1]
-        friend_team = i[2]
-        friend_no = i[4]
-        friend_sl = i[5]
-        new_friend = Friends(name=friend_name,
-                             divno=friend_divno,
-                             teamno=friend_teamno,
-                             team=friend_team,
-                             no=friend_no,
-                             sl=friend_sl)
+        team_playername = i[3]
+        team_divname = i[0]
+        team_teamno = i[1]
+        team_teamname = i[2]
+        team_playerno = i[4]
+        team_playersl = i[5]
+        new_team = teams(playername=team_playername,
+                             divname=team_divname,
+                             teamno=team_teamno,
+                             teamname=team_teamname,
+                             playerno=team_playerno,
+                             playersl=team_playersl)
         try:
-            db.session.add(new_friend)
+            db.session.add(new_team)
             db.session.commit()
 
         except:
             return "There was a error adding Player"
 
-    # for friend in friends:
-    #     db.session.delete(friend)
+    # for team in teams:
+    #     db.session.delete(team)
     #     db.session.commit()
 
 
@@ -164,7 +164,7 @@ def updateSession(session):
     #if 'teams' not in session:
         #session['teams']= convjson(csvFilename)
     # </editor-fold>
-    #createdb(csvFilename)
+    #
     # Rack Score sheet
 
     for i in range(15):
@@ -233,61 +233,78 @@ def updateSession(session):
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
 def update(id):
-    friend_to_update = Friends.query.get_or_404(id)
+    team_to_update = teams.query.get_or_404(id)
     if request.method == "POST":
-        friend_to_update.name = request.form['name']
+        team_to_update.playername = request.form['name']
         try:
             db.session.commit()
-            return redirect('/friends')
+            return redirect('/showteams')
         except:
             return "There was an error updating!!...."
     else:
-        return render_template('update.html', friend_to_update=friend_to_update)
+        return render_template('update.html', team_to_update=team_to_update)
 
 @app.route('/delete/<int:id>', methods=['POST', 'GET'])
 def delete(id):
-    friend_to_update = Friends.query.get_or_404(id)
+    team_to_update = teams.query.get_or_404(id)
     if request.method == "POST":
-        db.session.delete(friend_to_update)
+        db.session.delete(team_to_update)
         try:
             db.session.commit()
-            return redirect('/friends')
+            return redirect('/showteams')
         except:
             return "There was an error updating!!...."
     else:
-        return render_template('delete.html', friend_to_update=friend_to_update)
+        return render_template('delete.html', team_to_update=team_to_update)
+
+@app.route('/query', methods=['POST', 'GET'])
+def query():
+    names = ["08", "04"]
+    showteams = teams.query.filter(teams.divname=='Tue Double Jeopardy - 442',teams.teamno.in_(names)).all()
+    # division = teams.query.filter_by(divname = 'Thurs Double Jeopardy - 444').all()
+    # showteams = teams.query.filter(division.teamname.in_(names)).all()
+
+    return render_template("teams.html", teams=showteams)
 
 
-@app.route('/friends', methods=['POST', 'GET'])
-def friends():
+@app.route('/showteams', methods=['POST', 'GET'])
+def showteams():
 
     if request.method == "POST":
-        friend_name = request.form['name']
-        friend_divno = 'Thursday Double J - 444'
-        friend_teamno = '08'
-        friend_team = 'Crazy 8s'
-        friend_no = 12345
-        friend_sl = 4
-        new_friend = Friends(name=friend_name,
-                             divno=friend_divno,
-                             teamno=friend_teamno,
-                             team=friend_team,
-                             no=friend_no,
-                             sl=friend_sl)
+        team_name = request.form['name']
+        team_divno = 'Thursday Double J - 444'
+        team_teamno = '08'
+        team_team = 'Crazy 8s'
+        team_no = 12345
+        team_sl = 4
+        new_team = teams(name=team_name,
+                             divno=team_divno,
+                             teamno=team_teamno,
+                             team=team_team,
+                             no=team_no,
+                             sl=team_sl)
         try:
-            db.session.add(new_friend)
+            db.session.add(new_team)
             db.session.commit()
-            return redirect('/friends')
+            return redirect('/teams')
         except:
             return "There was a error adding Player"
     else:
-        friends = Friends.query.order_by(Friends.date_created)
-        # for friend in friends:
-        #     db.session.delete(friend)
-        #     db.session.commit()
-        return render_template("friends.html", friends=friends)
+        showteams = teams.query.order_by(teams.date_created)
+
+        return render_template("teams.html", teams=showteams)
 
 
+@app.route('/reloadteams')
+def reloadteams():
+    showteams = teams.query.order_by(teams.date_created)
+    for team in showteams:
+        db.session.delete(team)
+        db.session.commit()
+    createdb(csvFilename)
+    time.sleep(2)
+    showteams = teams.query.order_by(teams.date_created)
+    return render_template("teams.html", teams=showteams)
 
 @app.route('/home')
 def home():

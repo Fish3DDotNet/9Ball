@@ -11,6 +11,9 @@ import os
 import csv
 from time import sleep
 
+div = ''
+divno = 0
+
 def login():
 
     # Create webdriver object
@@ -45,10 +48,29 @@ def login():
 
     return driver
 
-def navtopage(driver,d):
+def navtopage(driver):
 
-    np = driver.find_element(By.XPATH,
-                             '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div/a[4]')
+    pic = 1
+    if pic == 1:
+        ## tuesday double jeopardy 442
+        np = driver.find_element(By.XPATH,
+                                 '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div/a[4]')
+        div = 'Tue Double Jeopardy'
+        divno = 442
+
+    elif pic == 2:
+        ## Thursday double jeopardy 444
+        np = driver.find_element(By.XPATH,
+                                 '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[4]/div/a[3]')
+        div = 'Thurs Double Jeopardy'
+        divno = 444
+
+    elif pic == 3:
+        ## Sat double jeopardy 444
+        np = driver.find_element(By.XPATH,
+                                 '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/div/div/div/div[5]/div/a[4]')
+        div = 'Sat Double Jeopardy'
+        divno = 446
 
     np.send_keys(Keys.RETURN)
 
@@ -68,14 +90,15 @@ def navtopage(driver,d):
     # print("")
     # print(pi.text)
 
+    return div, divno
+
 def getdata(driver,t):
 
 
     # np = driver.find_elements(By.XPATH, '//h3')
     # for i in  range(len(np)):
     #     print(np[i].accessible_name)
-    div = 'Sat Double Jeopardy'
-    divno = 446
+
 
     team = driver.find_element(By.XPATH,
                                '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[' + str(
@@ -108,14 +131,15 @@ def iterate(driver):
         getdata(driver,t+1)
 
 plist = []
+
 driver = login()
 sleep(3)
-navtopage(driver,5)
+div, divno = navtopage(driver)
 sleep(3)
 
 iterate(driver)
 
-file = open('teams4.txt', 'w+', newline='')
+file = open('teams.txt', 'w+', newline='')
 
 # writing the data into the file
 with file:
