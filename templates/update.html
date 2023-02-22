@@ -4,13 +4,11 @@
 <br>
 <div class="container">
 <form action="/update/{{team_to_update.id}}" METHOD="POST">
-   <input type="text" placeholder="Name" name="name" value="{{team_to_update.playername}}">
    <input type="submit" value="Update Player" class="btn btn-secondary">
    <table>
    <h4>
       <thead>
          <tr>
-            <th scope="col"></th>
             <th scope="col">Division</th>
             <th scope="col">Team #</th>
             <th scope="col">Team Name</th>
@@ -19,16 +17,13 @@
             <th scope="col">Skill Level</th>
          </tr>
       </thead>
-
-
       <tr>
-
          <td>{{ team_to_update.divname }}</td>
          <td>{{ team_to_update.teamno }}</td>
          <td>{{ team_to_update.teamname }}</td>
-         <td> <input type="text" placeholder="Name" name="name" value="{{team_to_update.playername}}"></td>
-         <td> <input type="text" placeholder="Name" name="name" value="{{team_to_update.playerno}}"></td>
-         <td> <input type="text" placeholder="Name" name="name" value="{{team_to_update.playername}}"></td>
+         <td><input type="text" placeholder="Name" name="name" value="{{team_to_update.playername}}"></td>
+         <td><input type="text" placeholder="#" name="pno" value="{{team_to_update.playerno}}"></td>
+         <td><input type="text" placeholder="Skill Level" name="psl" value="{{team_to_update.playersl}}"></td>
       </tr>
    </h4>
    </table>

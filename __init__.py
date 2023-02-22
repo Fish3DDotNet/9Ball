@@ -236,6 +236,8 @@ def update(id):
     team_to_update = teams.query.get_or_404(id)
     if request.method == "POST":
         team_to_update.playername = request.form['name']
+        team_to_update.playerno = request.form['pno']
+        team_to_update.playersl = request.form['psl']
         try:
             db.session.commit()
             return redirect('/showteams')
