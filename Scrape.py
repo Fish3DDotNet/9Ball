@@ -28,8 +28,8 @@ def login():
 
     email = driver.find_element(By.ID, 'email')
     pw = driver.find_element(By.ID, 'password')
-    email.send_keys("@gmail.com")
-    pw.send_keys("")
+    email.send_keys("bmffish@gmail.com")
+    pw.send_keys("D3riJP0g")
     pw.send_keys(Keys.RETURN)
 
     sleep(2)

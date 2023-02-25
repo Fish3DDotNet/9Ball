@@ -1,38 +1,36 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
 {% block content %}
-
 <br>
 <div class="row justify-content-center">
    <table class="table table-sm table-primary table-striped w-75">
-   <h4>
-      <thead>
-         <tr>
-            <th scope="col"></th>
-            <th scope="col">Division</th>
-            <th scope="col">Team #</th>
-            <th scope="col">Team Name</th>
-            <th scope="col">Players</th>
-            <th scope="col">Player #</th>
-            <th scope="col">Skill Level</th>
-         </tr>
-      </thead>
+      <h4>
+         <thead>
+            <tr>
+               <th scope="col"></th>
+               <th scope="col">Division</th>
+               <th scope="col">Team #</th>
+               <th scope="col">Team Name</th>
+               <th scope="col">Players</th>
+               <th scope="col">Player #</th>
+               <th scope="col">Skill Level</th>
+            </tr>
+         </thead>
    {% for team in teams %}
-      <tr>
-         <td>
-            <a href="/update/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
-            <a href="/delete/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
-         </td>
-         <td>{{ team.divname }}</td>
-         <td>{{ team.teamno }}</td>
-         <td>{{ team.teamname }}</td>
-         <td>{{ team.playername }}</td>
-         <td>{{ team.playerno }}</td>
-         <td>{{ team.playersl }}</td>
-      </tr>
-   </h4>
+         <tr>
+            <td>
+               <a href="/update/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+               <a href="/delete/{{ team.id }}" class="btn btn-outline-secondary btn-sm">Delete</a>
+            </td>
+            <td>{{ team.divname }}</td>
+            <td>{{ team.teamno }}</td>
+            <td>{{ team.teamname }}</td>
+            <td>{{ team.playername }}</td>
+            <td>{{ team.playerno }}</td>
+            <td>{{ team.playersl }}</td>
+         </tr>
+      </h4>
    {% endfor %}
    </table>
 </div>
-
 {% endblock %}
