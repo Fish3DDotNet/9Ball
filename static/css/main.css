@@ -47,3 +47,8 @@ p {
     font-size: 1.2em;
     margin: 2px;
 }
+
+.input {
+    border: 1px solid #ccc;
+    padding: 1px 6px;
+}

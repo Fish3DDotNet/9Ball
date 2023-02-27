@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
 {% block content %}
+<form action="/updaterack" METHOD="POST">
 
 <!--Player 1 score-->
 <table width="100%" class="table-primary">
@@ -72,80 +73,80 @@
 		<td width="20%" class="text-start">{{player1no}}</td>
 		<td width="5%" class="align-middle" rowspan=2>{{player1target}}</td>
 		<td width="10%" class="left align-middle">Score</td>
-		<td width="3%" class="align-middle">{{p1r1}}</td>
-		<td width="3%" class="align-middle">{{p1r2}}</td>
-		<td width="3%" class="align-middle">{{p1r3}}</td>
-		<td width="3%" class="align-middle">{{p1r4}}</td>
-		<td width="3%" class="align-middle">{{p1r5}}</td>
-		<td width="3%" class="align-middle">{{p1r6}}</td>
-		<td width="3%" class="align-middle">{{p1r7}}</td>
-		<td width="3%" class="align-middle">{{p1r8}}</td>
-		<td width="3%" class="align-middle">{{p1r9}}</td>
-		<td width="3%" class="align-middle">{{p1r10}}</td>
-		<td width="3%" class="align-middle">{{p1r11}}</td>
-		<td width="3%" class="align-middle">{{p1r12}}</td>
-		<td width="3%" class="align-middle">{{p1r13}}</td>
-		<td width="3%" class="align-middle">{{p1r14}}</td>
-		<td width="3%" class="align-middle">{{p1r15}}</td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r1" value="{{p1r1}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r2" value="{{p1r2}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r3" value="{{p1r3}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r4" value="{{p1r4}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r5" value="{{p1r5}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r6" value="{{p1r6}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r7" value="{{p1r7}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r8" value="{{p1r8}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r9" value="{{p1r9}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r10" value="{{p1r10}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r11" value="{{p1r11}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r12" value="{{p1r12}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r13" value="{{p1r13}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r14" value="{{p1r14}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p1r15" value="{{p1r15}}"></td>
 	</tr>
 	<tr>
 		<td class="text-start">{{player1}}</td>
 		<td class="left align-middle">Innings</td>
-		<td class="align-middle">{{inr1}}</td>
-		<td class="align-middle">{{inr2}}</td>
-		<td class="align-middle">{{inr3}}</td>
-		<td class="align-middle">{{inr4}}</td>
-		<td class="align-middle">{{inr5}}</td>
-		<td class="align-middle">{{inr6}}</td>
-		<td class="align-middle">{{inr7}}</td>
-		<td class="align-middle">{{inr8}}</td>
-		<td class="align-middle">{{inr9}}</td>
-		<td class="align-middle">{{inr10}}</td>
-		<td class="align-middle">{{inr11}}</td>
-		<td class="align-middle">{{inr12}}</td>
-		<td class="align-middle">{{inr13}}</td>
-		<td class="align-middle">{{inr14}}</td>
-		<td class="align-middle">{{inr15}}</td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr1" value="{{inr1}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr2" value="{{inr2}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr3" value="{{inr3}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr4" value="{{inr4}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr5" value="{{inr5}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr6" value="{{inr6}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr7" value="{{inr7}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr8" value="{{inr8}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr9" value="{{inr9}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr10" value="{{inr10}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr11" value="{{inr11}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr12" value="{{inr12}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr13" value="{{inr13}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr14" value="{{inr14}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="inr15" value="{{inr15}}"></td>
 	</tr>
 	<tr>
 		<td class="align-middle" rowspan=2>{{team2}}</td>
 		<td  class="text-start">{{player2no}}</td>
 		<td class="align-middle" rowspan=2>{{player2target}}</td>
 		<td class="align-middle">Dead Balls</td>
-		<td class="align-middle">{{dbr1}}</td>
-		<td class="align-middle">{{dbr2}}</td>
-		<td class="align-middle">{{dbr3}}</td>
-		<td class="align-middle">{{dbr4}}</td>
-		<td class="align-middle">{{dbr5}}</td>
-		<td class="align-middle">{{dbr6}}</td>
-		<td class="align-middle">{{dbr7}}</td>
-		<td class="align-middle">{{dbr8}}</td>
-		<td class="align-middle">{{dbr9}}</td>
-		<td class="align-middle">{{dbr10}}</td>
-		<td class="align-middle">{{dbr11}}</td>
-		<td class="align-middle">{{dbr12}}</td>
-		<td class="align-middle">{{dbr13}}</td>
-		<td class="align-middle">{{dbr14}}</td>
-		<td class="align-middle">{{dbr15}}</td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr1" value="{{dbr1}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr2" value="{{dbr2}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr3" value="{{dbr3}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr4" value="{{dbr4}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr5" value="{{dbr5}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr6" value="{{dbr6}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr7" value="{{dbr7}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr8" value="{{dbr8}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr9" value="{{dbr9}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr10" value="{{dbr10}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr11" value="{{dbr11}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr12" value="{{dbr12}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr13" value="{{dbr13}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr14" value="{{dbr14}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="dbr15" value="{{dbr15}}"></td>
 	</tr>
 	<tr>
 		<td class="text-start">{{player2}}</td>
 		<td class="left align-middle">Score</td>
-		<td class="align-middle">{{p2r1}}</td>
-		<td class="align-middle">{{p2r2}}</td>
-		<td class="align-middle">{{p2r3}}</td>
-		<td class="align-middle">{{p2r4}}</td>
-		<td class="align-middle">{{p2r5}}</td>
-		<td class="align-middle">{{p2r6}}</td>
-		<td class="align-middle">{{p2r7}}</td>
-		<td class="align-middle">{{p2r8}}</td>
-		<td class="align-middle">{{p2r9}}</td>
-		<td class="align-middle">{{p2r10}}</td>
-		<td class="align-middle">{{p2r11}}</td>
-		<td class="align-middle">{{p2r12}}</td>
-		<td class="align-middle">{{p2r13}}</td>
-		<td class="align-middle">{{p2r14}}</td>
-		<td class="align-middle">{{p2r15}}</td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r1" value="{{p2r1}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r2" value="{{p2r2}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r3" value="{{p2r3}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r4" value="{{p2r4}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r5" value="{{p2r5}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r6" value="{{p2r6}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r7" value="{{p2r7}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r8" value="{{p2r8}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r9" value="{{p2r9}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r10" value="{{p2r10}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r11" value="{{p2r11}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r12" value="{{p2r12}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r13" value="{{p2r13}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r14" value="{{p2r14}}"></td>
+		<td width="3%" class="align-middle"><input style="width:2em;" type="text" name="p2r15" value="{{p2r15}}"></td>
 	</tr>
 </table>
 <!--Player 2 score-->
@@ -209,6 +210,7 @@
 		<td class="{{p2s55}}">55</td>
 	</tr>
 </table>
+
 <!--Player1-->
 <p>{{player1}}</p>
 <table width="100%" class="no-m">
@@ -372,36 +374,13 @@
 	</tr>
 </table>
 <br>
-<div class="row" {{submitrackinvisible}}>
+
+<div class="row">
 	<div class="col">
-		<form action="p1safety" method="post">
-			<input class="btn btn-primary" type="submit" value="Player 1 Safety">
-		</form>
-	</div>
-	<div class="col">
-		<form action="inning" method="post">
-			<input class="btn btn-primary" type="submit" value="Inning">
-		</form>
-	</div>
-	<div class="col">
-		<form action="p2safety" method="post">
-			<input class="btn btn-primary" type="submit" value="Player 2 Safety">
-		</form>
+		<input type="submit" value="Update" class="btn btn-secondary">
 	</div>
 </div>
-<!--Submit Button-->
-<div>
-	<form action="submitRack" method="post">
-		<input class="btn btn-primary" {{submitrackvisible}} type="submit" value="Submit Rack">
-	</form>
-</div>
-<!--Edit Button-->
-<br>
-<div>
-	<form action="updaterack">
-		<input class="btn btn-primary" type="submit" value="Edit Scoresheet">
-	</form>
-</div>
+</form>
 <br>
 
 <!--Reset Button-->
