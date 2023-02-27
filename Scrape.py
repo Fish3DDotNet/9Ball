@@ -28,8 +28,8 @@ def login():
 
     email = driver.find_element(By.ID, 'email')
     pw = driver.find_element(By.ID, 'password')
-    email.send_keys("bmffish@gmail.com")
-    pw.send_keys("D3riJP0g")
+    email.send_keys(".com")
+    pw.send_keys("")
     pw.send_keys(Keys.RETURN)
 
     sleep(2)
@@ -48,9 +48,8 @@ def login():
 
     return driver
 
-def navtopage(driver):
+def navtopage(driver,pic):
 
-    pic = 1
     if pic == 1:
         ## tuesday double jeopardy 442
         np = driver.find_element(By.XPATH,
@@ -74,31 +73,16 @@ def navtopage(driver):
 
     np.send_keys(Keys.RETURN)
 
-
-    # pi = driver.find_elements(By.XPATH, '//h4')
-    # for i in range(len(pi)):
-    #     print(pi[i].accessible_name)
-    # print("")
-
     sleep(3)
 
     np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/ul/li[2]/a')
 
     np.send_keys(Keys.RETURN)
 
-    # pi = driver.find_element(By.XPATH,  '//*[@id="wrapper"]/div[3]/div[2]/div/div[1]/div/div/h4/span[text()]')
-    # print("")
-    # print(pi.text)
 
     return div, divno
 
-def getdata(driver,t):
-
-
-    # np = driver.find_elements(By.XPATH, '//h3')
-    # for i in  range(len(np)):
-    #     print(np[i].accessible_name)
-
+def getdata(driver,t,div,divno):
 
     team = driver.find_element(By.XPATH,
                                '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[' + str(
@@ -125,71 +109,41 @@ def getdata(driver,t):
 
         print(str(div) + " - " + str(divno) + "," + str(teamno) + "," + str(teamname) + "," + str(player.text) + "," + str(playerno.text[-5:]) + "," + str(playersl.text))
 
-def iterate(driver):
+def iterate(driver,div,divno):
     teams = driver.find_elements(By.XPATH, '//h3')
     for t in range(len(teams)-1):
-        getdata(driver,t+1)
+        getdata(driver,t+1,div,divno)
+
+
+
+def processAll(driver):
+
+    for i in range(3):
+
+        div, divno = navtopage(driver,i+1)
+        sleep(3)
+        iterate(driver,div,divno)
+
+        np = driver.find_element(By.LINK_TEXT, 'APA of Spokane')
+        np.send_keys(Keys.RETURN)
+        sleep(3)
+        np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/ul/li[3]/a')
+        np.send_keys(Keys.RETURN)
+        sleep(3)
+
 
 plist = []
 
 driver = login()
 sleep(3)
-div, divno = navtopage(driver)
-sleep(3)
+processAll(driver)
 
-iterate(driver)
 
-file = open('teams.txt', 'w+', newline='')
+
+file = open('static/data/teams.txt', 'w+', newline='')
 
 # writing the data into the file
 with file:
     write = csv.writer(file)
     write.writerows(plist)
 file.close()
-
-print('hold')
-# getdata()
-# sleep(10)
-#
-# sleep(3)
-#
-#
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/section/select/option[13]')
-# np.send_keys(Keys.RETURN)
-#
-# print('hold')
-
-#
-# np = driver.find_elements(By.XPATH, '//h3')
-# for i in  range(len(np)):
-#     print(np[i].accessible_name)
-#
-# APA of Spokane
-# 1 Ball @ A Time�(01)
-# Hit A Rail�(02)
-# Rack n Roll�(03)
-# No Fair Aiming�(04)
-# Motley Crew�(05)
-# H82LOSE�(06)
-# Were Solids.... Right?�(07)
-# Chevelles�(08)
-# Just For The Fun�(09)
-# Stick it 2 Em!�(10)
-# Shameless�(11)
-# Rocky Blasters�(12)
-#
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[1]/div[1]')
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/table/tbody/tr[2]/td[1]/div[1]')
-# Next team
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[1]/td[1]/div[1]')
-# print(np.text)
-# Mitchell Andrews
-#
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[1]/div[2][text()]')
-# print(np.text)
-# #94612717
-#
-# np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[2]')
-# print(np.text)
-# 8
-#
