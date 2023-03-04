@@ -28,7 +28,7 @@ def login():
 
     email = driver.find_element(By.ID, 'email')
     pw = driver.find_element(By.ID, 'password')
-    email.send_keys(".com")
+    email.send_keys("@gmail.com")
     pw.send_keys("")
     pw.send_keys(Keys.RETURN)
 
@@ -44,7 +44,7 @@ def login():
             np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/ul/li[3]/a')
 
         np.send_keys(Keys.RETURN)
-        sleep(3)
+        sleep(5)
 
     return driver
 

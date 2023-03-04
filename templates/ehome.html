@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<form action="/updatehome" METHOD="POST">
+<br>
+<div class="row justify-content-center">
+   <table class="table table-sm table-primary table-striped w-75">
+      <col>
+      <thead>
+         <tr>
+            <th scope="col">Match</th>
+            <th scope="col">Team #</th>
+            <th scope="col">Players</th>
+            <th scope="col">Player #</th>
+            <th scope="col">Skill Level</th>
+            <th scope="col">Innings</th>
+            <th scope="col">Safetys</th>
+            <th scope="col">End Score</th>
+            <th scope="col">Points</th>
+         </tr>
+      </thead>
+      <tr>
+         <td width="5%" class="align-middle" rowspan="2">01</td>
+         <td width="5%"><input style="width:2em;" type="text" name="m1t1" value="{{m1t1}}"></td>
+         <td width="25%" class="text-start"><input style="width:10em;" type="text" name="m1p1" value="{{m1p1}}"></td>
+         <td width="5%"><input style="width:5em;" type="text" name="m1p1no" value="{{m1p1no}}"></td>
+         <td width="5%"><input style="width:2em;" type="text" name="m1p1sl" value="{{m1p1sl}}"></td>
+         <td width="5%" class="align-middle" rowspan="2"><input style="width:2em;" type="text" name="m1in" value="{{m1in}}"></td>
+         <td width="5%"><input style="width:2em;" type="text" name="m1p1saf" value="{{m1p1saf}}"></td>
+         <td width="5%"><input style="width:2em;" type="text" name="m1p1sco" value="{{m1p1sco}}"></td>
+         <td width="5%"><input style="width:2em;" type="text" name="m1p1poi" value="{{m1p1poi}}"></td>
+      </tr>
+      <tr>
+         <td><input style="width:2em;" type="text" name="m1t2" value="{{m1t2}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m1p2" value="{{m1p2}}"></td>
+         <td><input style="width:5em;" type="text" name="m1p2no" value="{{m1p2no}}"></td>
+         <td><input style="width:2em;" type="text" name="m1p2sl" value="{{m1p2sl}}"></td>
+         <td><input style="width:2em;" type="text" name="m1p2saf" value="{{m1p2saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m1p2sco" value="{{m1p2sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m1p2poi" value="{{m1p2poi}}"></td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">02</td>
+         <td><input style="width:2em;" type="text" name="m2t1" value="{{m2t1}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m2p1" value="{{m2p1}}"></td>
+         <td><input style="width:5em;" type="text" name="m2p1no" value="{{m2p1no}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p1sl" value="{{m2p1sl}}"></td>
+         <td class="align-middle" rowspan="2"><input style="width:2em;" type="text" name="m2in" value="{{m2in}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p1saf" value="{{m2p1saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p1sco" value="{{m2p1sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p1poi" value="{{m2p1poi}}"></td>
+      </tr>
+      <tr>
+         <td><input style="width:2em;" type="text" name="m2t2" value="{{m2t2}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m2p2" value="{{m2p2}}"></td>
+         <td><input style="width:5em;" type="text" name="m2p2no" value="{{m2p2no}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p2sl" value="{{m2p2sl}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p2saf" value="{{m2p2saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p2sco" value="{{m2p2sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m2p2poi" value="{{m2p2poi}}"></td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">03</td>
+         <td><input style="width:2em;" type="text" name="m3t1" value="{{m3t1}}"></td>
+         <td width="25%" class="text-start"><input style="width:10em;" type="text" name="m3p1" value="{{m3p1}}"></td>
+         <td><input style="width:5em;" type="text" name="m3p1no" value="{{m3p1no}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p1sl" value="{{m3p1sl}}"></td>
+         <td class="align-middle" rowspan="2"><input style="width:2em;" type="text" name="m3in" value="{{m3in}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p1saf" value="{{m3p1saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p1sco" value="{{m3p1sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p1poi" value="{{m3p1poi}}"></td>
+      </tr>
+      <tr>
+         <td><input style="width:2em;" type="text" name="m3t2" value="{{m3t2}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m3p2" value="{{m3p2}}"></td>
+         <td><input style="width:5em;" type="text" name="m3p2no" value="{{m3p2no}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p2sl" value="{{m3p2sl}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p2saf" value="{{m3p2saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p2sco" value="{{m3p2sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m3p2poi" value="{{m3p2poi}}"></td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">04</td>
+         <td><input style="width:2em;" type="text" name="m4t1" value="{{m4t1}}"></td>
+         <td width="25%" class="text-start"><input style="width:10em;" type="text" name="m4p1" value="{{m4p1}}"></td>
+         <td><input style="width:5em;" type="text" name="m4p1no" value="{{m4p1no}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p1sl" value="{{m4p1sl}}"></td>
+         <td class="align-middle" rowspan="2"><input style="width:2em;" type="text" name="m4in" value="{{m4in}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p1saf" value="{{m4p1saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p1sco" value="{{m4p1sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p1poi" value="{{m4p1poi}}"></td>
+      </tr>
+      <tr>
+         <td><input style="width:2em;" type="text" name="m4t2" value="{{m4t2}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m4p2" value="{{m4p2}}"></td>
+         <td><input style="width:5em;" type="text" name="m4p2no" value="{{m4p2no}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p2sl" value="{{m4p2sl}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p2saf" value="{{m4p2saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p2sco" value="{{m4p2sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m4p2poi" value="{{m4p2poi}}"></td>
+      </tr>
+      <tr>
+         <td class="align-middle" rowspan="2">05</td>
+         <td><input style="width:2em;" type="text" name="m5t1" value="{{m5t1}}"></td>
+         <td width="25%" class="text-start"><input style="width:10em;" type="text" name="m5p1" value="{{m5p1}}"></td>
+         <td><input style="width:5em;" type="text" name="m5p1no" value="{{m5p1no}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p1sl" value="{{m5p1sl}}"></td>
+         <td class="align-middle" rowspan="2"><input style="width:2em;" type="text" name="m5in" value="{{m5in}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p1saf" value="{{m5p1saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p1sco" value="{{m5p1sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p1poi" value="{{m5p1poi}}"></td>
+      </tr>
+      <tr>
+         <td><input style="width:2em;" type="text" name="m5t2" value="{{m5t2}}"></td>
+         <td class="text-start"><input style="width:10em;" type="text" name="m5p2" value="{{m5p2}}"></td>
+         <td><input style="width:5em;" type="text" name="m5p2no" value="{{m5p2no}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p2sl" value="{{m5p2sl}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p2saf" value="{{m5p2saf}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p2sco" value="{{m5p2sco}}"></td>
+         <td><input style="width:2em;" type="text" name="m5p2poi" value="{{m5p2poi}}"></td>
+      </tr>
+   </table>
+
+
+<br>
+
+<!--
+<div class="progress w-75">
+  <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="100" aria-valuemax="0"></div>
+</div>
+-->
+</div>
+
+
+<div class="row">
+	<div class="col">
+		<input type="submit" value="Update" class="btn btn-secondary">
+	</div>
+</div>
+</form>
+
+
+{% endblock %}
