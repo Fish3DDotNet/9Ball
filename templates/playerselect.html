@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<br>
+{% if step < 2 %}
+<div class="row d-flex justify-content-center">
+<form class="w-25" action="playerselect" method="post">
+   {% if step == 0 %}
+      <p>Selet Players</p>
+
+   {% endif %}
+
+   {% if step == 1 %}
+      <p>Lag Winner</p>
+
+   {% endif %}
+<br>
+<input class="btn btn-primary" type="submit" value="Next">
+</form>
+
+
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<br>
+{% if step < 2 %}
+<div class="row d-flex justify-content-center">
+<form class="w-50" action="teamselect" method="post">
+   {% if step == 0 %}
+   <p>Select Division</p>
+
+{% for div in divnameList %}
+<input type="radio" id="html" name="division" value="{{div}}">
+   <label for="{{div}}">{{div}}</label>
+   <br>
+{% endfor %}
+
+
+<!--
+   <div class="bd-example">
+      <select name="division" multiple>
+         {% for div in divnameList %}
+         <option value="{{div}}">{{div}}</option>
+         {% endfor %}
+      </select>
+   </div>
+-->
+   {% endif %}
+   {% if step == 1 %}
+   <br>
+   <h4>{{divname}}</h4>
+   <p>Select Teams</p>
+   <div class="col-auto">
+      <table class="table table-responsive table-sm table-primary table-striped">
+         {% for team in teamnameList %}
+         <tr>
+            <td><input class="text-left" type="checkbox" name="teamscheckbox" value="{{team}}"></td>
+            <td class="text-start"><label>{{team[0]}} - {{team[1]}}</label></td>
+         </tr>
+         {% endfor %}
+      </table>
+   </div>
+   {% endif %}
+   <br>
+   <input class="btn btn-primary" type="submit" value="Next">
+</form>
+{% endif %}
+{% if step == 2 %}
+<div class="row d-flex justify-content-center">
+   <form class="w-50" action="/teamselect" method="post">
+      <h2>{{teama}}</h2>
+      <h4>vs</h4>
+      <h2>{{teamb}}</h2>
+      <br>
+      <input class="btn btn-primary" name="letsgo" type="submit" value="Lets Go!">
+   </form>
+   {% endif %}
+</div>
+</div>
+{% endblock %}

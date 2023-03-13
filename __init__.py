@@ -33,7 +33,7 @@ txtFilename = os.path.join(SITE_ROOT, 'static/data',
 app.app_context().push()
 db.create_all()
 
-def createdb(txtFilename):
+def createdb(txtFilename):## MARKED FOR DELETION!!!!
     with open(txtFilename, encoding='utf-8') as csvfile:
         # def row_count(filename):
         #     with open(filename) as in_file:
@@ -119,10 +119,20 @@ def updateSession(session):
 
     # <editor-fold desc="# Scoresheet Data">
 
+    keys = ['key1','key2']
+    for i in keys:
+        if i not in session:
+            session[i] = ''
+
+
     if 'submitrackvisible' not in session:
         session['submitrackvisible'] = 'hidden'
     if 'submitrackinvisible' not in session:
         session['submitrackinvisible'] = ''
+    if 'teamssellectedinvisable' not in session:
+        session['teamssellectedinvisable'] = 'hidden'
+    if 'teamssellectedvisable' not in session:
+        session['teamssellectedvisable'] = ''
 
     if 'player1' not in session:
         session['player1'] = ''
@@ -160,6 +170,8 @@ def updateSession(session):
         session['currentrack'] = 1
     if 'currentmatch' not in session:
         session['currentmatch'] = 1
+    if 'division' not in session:
+        session['division'] = ''
     if 'teama' not in session:
         session['teama'] = "Team A"
     if 'teamascore' not in session:
@@ -168,6 +180,16 @@ def updateSession(session):
         session['teamb'] = "Team B"
     if 'teambscore' not in session:
         session['teambscore'] = 0
+    if 'teamnameList' not in session:
+        session['teamnameList'] = []
+    if 'divisionList' not in session:
+        session['divisionList'] = []
+    if 'division' not in session:
+        session['division'] = ''
+    if 'teamsSelected' not in session:
+        session['teamsSelected'] = []
+    if 'step' not in session:
+        session['step'] = 0
     # </editor-fold>
 
     # Rack Score sheet
@@ -317,7 +339,9 @@ def contexthome():
         'teama': session['teama'],
         'teamb': session['teamb'],
         'teamascore': session['teamascore'],
-        'teambscore': session['teambscore']
+        'teambscore': session['teambscore'],
+        'teamssellectedinvisable' : session['teamssellectedinvisable'],
+        'teamssellectedvisable': session['teamssellectedvisable']
     }
     return contexthome
 
@@ -661,17 +685,30 @@ def testdata():
 
     return redirect(url_for('home'))
 
-@app.route('/testbed', methods=['POST', 'GET'])
-def testbed():
-    if request.method == "POST":
-        div_selected = request.form.get('divteam')
+@app.route('/teamselect', methods=['POST', 'GET'])
+def teamselect():
+    def step1(): # Select division
+        session['step'] = 1
+        session['division'] = request.form.get('division')
+        teamnameList = []
+        templist = []
+        showteams = teams.query.filter_by(divname=session['division'])
+
+        for team in showteams:
+            if ([team.teamno, team.teamname]) not in session['teamnameList']:
+                templist = [team.teamno, team.teamname]
+                session['teamnameList'].append(templist)
+
+        context = {
+            'step': session['step'],
+            'teamnameList': session['teamnameList'],
+            'divname': session['division']
+        }
+
+        return context
+    def step2(): # Select Teams
+        session['step'] = 2
         teams_selected = request.form.getlist('teamscheckbox')
-        letsgo = request.form.get('letsgo')
-        if letsgo == "Lets Go!":
-
-            context = {}; context = contexthome()
-
-            return render_template('home.html',**context)
         teamsSelected = []
         if len(teams_selected) > 0:
 
@@ -682,34 +719,90 @@ def testbed():
             templist = temptxt.split(',')
 
             teamsSelected.append(templist)
+
             session['teama'] = teamsSelected[0][0].replace('[','') +"-"+ teamsSelected[0][1]
+            session['teamano'] = teamsSelected[0][0].replace('[','')
             session['teamb'] = teamsSelected[1][0].replace('[','') +"-"+ teamsSelected[1][1]
-            pass
-        teamnameList = []
-        templist = []
-        showteams = teams.query.filter_by(divname = div_selected)
-        for team in showteams:
-            if ([team.teamno, team.teamname]) not in teamnameList:
+            session['teambno'] = teamsSelected[1][0].replace('[','')
 
-                templist = [team.teamno,team.teamname]
-                teamnameList.append(templist)
+            context = {
+                'step': session['step'],
+                'teama': session['teama'],
+                'teamb': session['teamb']
+            }
 
-        return render_template('testbed.html',
-                               teamnameList=teamnameList,
-                               divname=div_selected,
-                               teamsSelected=teamsSelected)
+            return context
+    def step3(): # Confirm Teams
+        session['step'] = 3
+        letsgo = request.form.get('letsgo')
+        if letsgo == "Lets Go!":
+            session['teamssellectedinvisable'] = ''
+            session['teamssellectedvisable'] = 'hidden'
+
+            # teamareturn = teams.query.filter(teams.divname == div_selected, teams.teamno == session['teamano'])
+            # for t in teamareturn:
+            #     print('')
+
+            context = {};
+            context = contexthome()
+            return context
+
+    if request.method == "POST":
+        if session['step'] == 0:
+            context = step1()
+        elif session['step'] == 1:
+            context = step2()
+        elif session['step'] == 2:
+            context = step3()
+
+        if session['step'] < 3:
+            return render_template('teamselect.html',**context)
+        else:
+            context = {};
+            context = contexthome()
+
+            return render_template('home.html', **context)
+
     else:
-        divnameList = []
-        teamnameList = []
-        showteams = teams.query.order_by(teams.date_created)
-        for team in showteams:
-            if team.divname not in divnameList:
-                divnameList.append(team.divname)
+        session['step'] = 0
+        getdivisions = teams.query.order_by(teams.date_created)
+        for team in getdivisions:
+            if team.divname not in session['divisionList']:
+                session['divisionList'].append(team.divname)
+        return render_template('teamselect.html',
+                               step=session['step'],
+                               divnameList=session['divisionList'])
 
+@app.route('/playerselect', methods=['POST', 'GET'])
+def playerselect():
+    def step1(): # Select players
+        session['step'] = 1
+        context = {
+            'step': session['step']
+        }
 
-        return render_template('testbed.html',
-                               divnameList=divnameList,
-                               teamnameList=teamnameList)
+        return context
+    def step2(): # Select lag winner
+        session['step'] = 2
+
+    if request.method == "POST":
+        if session['step'] == 0:
+            context = step1()
+        elif session['step'] == 1:
+            context = step2()
+
+        if session['step'] < 2:
+            return render_template('playerselect.html',**context)
+        else:
+            context = {};
+            context = contexthome()
+
+            return render_template('home.html', **context)
+
+    else:
+        session['step'] = 0
+        return render_template('playerselect.html',
+                               step=session['step'])
 
 @app.route('/gform')
 def gform():

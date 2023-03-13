@@ -123,14 +123,23 @@
 </div>
 <br>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" {{teamssellectedvisable}}>
+   <br>
+   <h3>Start Here</h3>
+   <a  href="/teamselect">
+   <input type="image" class="btn-sml" id="image" alt="" style="width:120px;height:120px;" src="/static/img/3dgifmaker68241.gif">
+   </a>
+</div>
+
+
+<div class="row justify-content-center" {{teamssellectedinvisable}}>
    <h4>{{teama}}</h4>
 <div class="progress w-75" style="height: 2em;">
   <div class="progress-bar" role="progressbar" style="width: {{teamascore}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{teamascore}}</div>
 </div>
 </div>
 <br>
-<div class="row justify-content-center">
+<div class="row justify-content-center" {{teamssellectedinvisable}}>
    <h4>{{teamb}}</h4>
 <div class="progress w-75" style="height: 2em;">
   <div class="progress-bar" role="progressbar" style="width: {{teambscore}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{teambscore}}</div>
@@ -140,7 +149,7 @@
 <br>
 
 <div>
-	<form action="updatehome">
+	<form action="updatehome" {{teamssellectedinvisable}}>
 		<input class="btn btn-primary" type="submit" value="Edit Home">
 	</form>
 </div>
