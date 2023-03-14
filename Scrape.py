@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 import csv
@@ -15,9 +16,12 @@ div = ''
 divno = 0
 
 def login():
+    options = Options()
+    options.headless = False
+
 
     # Create webdriver object
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
 
     # Get the website
     driver.get("https://accounts.poolplayers.com/login")
@@ -44,7 +48,7 @@ def login():
             np = driver.find_element(By.XPATH, '//*[@id="wrapper"]/div[3]/div[2]/div/div/div[2]/ul/li[3]/a')
 
         np.send_keys(Keys.RETURN)
-        sleep(5)
+        sleep(3)
 
     return driver
 
@@ -121,7 +125,7 @@ def processAll(driver):
     for i in range(3):
 
         div, divno = navtopage(driver,i+1)
-        sleep(3)
+        sleep(6)
         iterate(driver,div,divno)
 
         np = driver.find_element(By.LINK_TEXT, 'APA of Spokane')

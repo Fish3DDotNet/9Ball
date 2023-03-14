@@ -4,14 +4,73 @@
 <br>
 {% if step < 2 %}
 <div class="row d-flex justify-content-center">
-<form class="w-25" action="playerselect" method="post">
+<form class="w-50" action="playerselect" method="post">
    {% if step == 0 %}
       <p>Selet Players</p>
+
+   <br>
+<div class="row justify-content-center">
+   <table class="table table-sm table-primary table-striped w-75">
+      <h4>
+         <thead>
+            <tr>
+               <th></th>
+               <th scope="col">Players</th>
+               <th scope="col">Player #</th>
+               <th scope="col">Skill Level</th>
+            </tr>
+         </thead>
+   {% for player in playersa %}
+         <tr>
+            <td><input class="text-left" type="checkbox" name="playerscheckbox" value="{{ player.id }}"></td>
+            <td>{{ player.playername }}</td>
+            <td>{{ player.playerno }}</td>
+            <td>{{ player.playersl }}</td>
+         </tr>
+      </h4>
+   {% endfor %}
+      <br>
+         <thead>
+            <tr>
+               <th></th>
+               <th scope="col">Players</th>
+               <th scope="col">Player #</th>
+               <th scope="col">Skill Level</th>
+            </tr>
+         </thead>
+         {% for player in playersb %}
+         <tr>
+            <td><input class="text-left" type="checkbox" name="playerscheckbox" value="{{ player.id }}"></td>
+            <td>{{ player.playername }}</td>
+            <td>{{ player.playerno }}</td>
+            <td>{{ player.playersl }}</td>
+         </tr>
+      </h4>
+   {% endfor %}
+   </table>
+</div>
+
+
+
+
+
+
+
+
+
+
 
    {% endif %}
 
    {% if step == 1 %}
-      <p>Lag Winner</p>
+      <p>Select Lag Winner</p>
+
+{% for player in players %}
+<input type="radio" id="html" name="lagwinner" value="{{player.id}}">
+   <label for="{{player.playername}}">{{player.playername}}</label>
+   <br>
+{% endfor %}
+
 
    {% endif %}
 <br>

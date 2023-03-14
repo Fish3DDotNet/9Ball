@@ -174,18 +174,20 @@ def updateSession(session):
         session['division'] = ''
     if 'teama' not in session:
         session['teama'] = "Team A"
+    if 'teamano' not in session:
+        session['teamano'] = ''
     if 'teamascore' not in session:
         session['teamascore'] = 0
     if 'teamb' not in session:
         session['teamb'] = "Team B"
+    if 'teambno' not in session:
+        session['teambno'] = ''
     if 'teambscore' not in session:
         session['teambscore'] = 0
     if 'teamnameList' not in session:
         session['teamnameList'] = []
     if 'divisionList' not in session:
         session['divisionList'] = []
-    if 'division' not in session:
-        session['division'] = ''
     if 'teamsSelected' not in session:
         session['teamsSelected'] = []
     if 'step' not in session:
@@ -213,7 +215,7 @@ def updateSession(session):
 
     # Player Scores
 
-    for i in range(55):
+    for i in range(75):
         if str('p1s' + str(i + 1)) not in session:  # Player 1 tick table
             session[str('p1s' + str(i + 1))] = ''
         if str('p2s' + str(i + 1)) not in session:  # Player 2 tick table
@@ -482,6 +484,27 @@ def contextscore():
         'p1s53': session['p1s53'],
         'p1s54': session['p1s54'],
         'p1s55': session['p1s55'],
+        'p1s56': session['p1s56'],
+        'p1s57': session['p1s57'],
+        'p1s58': session['p1s58'],
+        'p1s59': session['p1s59'],
+        'p1s60': session['p1s60'],
+        'p1s61': session['p1s61'],
+        'p1s62': session['p1s62'],
+        'p1s63': session['p1s63'],
+        'p1s64': session['p1s64'],
+        'p1s65': session['p1s65'],
+        'p1s66': session['p1s66'],
+        'p1s67': session['p1s67'],
+        'p1s68': session['p1s68'],
+        'p1s69': session['p1s69'],
+        'p1s70': session['p1s70'],
+        'p1s71': session['p1s71'],
+        'p1s72': session['p1s72'],
+        'p1s73': session['p1s73'],
+        'p1s74': session['p1s74'],
+        'p1s75': session['p1s75'],
+
         'p2s1': session['p2s1'],
         'p2s2': session['p2s2'],
         'p2s3': session['p2s3'],
@@ -537,6 +560,28 @@ def contextscore():
         'p2s53': session['p2s53'],
         'p2s54': session['p2s54'],
         'p2s55': session['p2s55'],
+
+        'p2s56': session['p2s56'],
+        'p2s57': session['p2s57'],
+        'p2s58': session['p2s58'],
+        'p2s59': session['p2s59'],
+        'p2s60': session['p2s60'],
+        'p2s61': session['p2s61'],
+        'p2s62': session['p2s62'],
+        'p2s63': session['p2s63'],
+        'p2s64': session['p2s64'],
+        'p2s65': session['p2s65'],
+        'p2s66': session['p2s66'],
+        'p2s67': session['p2s67'],
+        'p2s68': session['p2s68'],
+        'p2s69': session['p2s69'],
+        'p2s70': session['p2s70'],
+        'p2s71': session['p2s71'],
+        'p2s72': session['p2s72'],
+        'p2s73': session['p2s73'],
+        'p2s74': session['p2s74'],
+        'p2s75': session['p2s75'],
+
         'submitrackvisible': session['submitrackvisible'],
         'submitrackinvisible': session['submitrackinvisible']
     }
@@ -572,8 +617,8 @@ def delete(id):
 
 @app.route('/query', methods=['POST', 'GET'])
 def query():
-    names = ["05", "10"]
-    showteams = teams.query.filter(teams.divname=='Sat Double Jeopardy - 446',teams.teamno.in_(names)).all()
+    names = [session['teamano'], session['teambno']]
+    showteams = teams.query.filter(teams.divname==session['division'],teams.teamno.in_(names)).all()
     # division = teams.query.filter_by(divname = 'Thurs Double Jeopardy - 444').all()
     # showteams = teams.query.filter(division.teamname.in_(names)).all()
 
@@ -777,13 +822,66 @@ def teamselect():
 def playerselect():
     def step1(): # Select players
         session['step'] = 1
+        players_selected = request.form.getlist('playerscheckbox')
+
+        session['playerida'] = players_selected[0]
+        session['playeridb'] = players_selected[1]
+
+        ids = [session['playerida'],session['playeridb']]
+
+        players = teams.query.filter(teams.divname == session['division'], teams.id.in_(ids)).all()
+
         context = {
-            'step': session['step']
+            'step': session['step'],
+            'players': players
         }
 
         return context
     def step2(): # Select lag winner
         session['step'] = 2
+        lagwinnerid = request.form.get('lagwinner')
+
+
+        x = session["currentmatch"]
+
+        teama = teams.query.filter_by(id = lagwinnerid).all()
+
+        if session['playerida'] != lagwinnerid:
+            teamb = teams.query.filter_by(id=session['playerida']).all()
+        else:
+            teamb = teams.query.filter_by(id=session['playeridb']).all()
+
+
+
+        curtno1 = teama[0].teamno
+        curpla1 = teama[0].playername
+        curplano1 = teama[0].playerno
+        curpsl1 = teama[0].playersl
+
+        curtno2 = teamb[0].teamno
+        curpla2 = teamb[0].playername
+        curplano2 = teamb[0].playerno
+        curpsl2 = teamb[0].playersl
+
+        session[str('m' + str(x) + 't1')] = session["team1"] = curtno1
+        session[str('m' + str(x) + 'p1')] = session["player1"] = curpla1
+        session[str('m' + str(x) + 'p1no')] = session["player1no"] = curplano1
+        session[str('m' + str(x) + 'p1sl')] = curpsl1
+        session["player1target"] = str(session["scoretable"]["psl"][str(curpsl1)])
+
+        session[str('m' + str(x) + 't2')] = session["team2"] = curtno2
+        session[str('m' + str(x) + 'p2')] = session["player2"] = curpla2
+        session[str('m' + str(x) + 'p2no')] = session["player2no"] = curplano2
+        session[str('m' + str(x) + 'p2sl')] = curpsl2
+        session["player2target"] = str(session["scoretable"]["psl"][str(curpsl2)])
+
+        return redirect(url_for('home'))
+
+
+
+
+
+
 
     if request.method == "POST":
         if session['step'] == 0:
@@ -801,8 +899,17 @@ def playerselect():
 
     else:
         session['step'] = 0
+
+        names = [session['teamano']]
+        playersa = teams.query.filter(teams.divname == session['division'], teams.teamno.in_(names)).all()
+
+        names = [session['teambno']]
+        playersb = teams.query.filter(teams.divname == session['division'], teams.teamno.in_(names)).all()
+
         return render_template('playerselect.html',
-                               step=session['step'])
+                               step=session['step'],
+                               playersa=playersa,
+                               playersb=playersb)
 
 @app.route('/gform')
 def gform():
@@ -952,7 +1059,7 @@ def valup():
         session['dbtotal'] = session['dbr1'] = session['p3curval']
 
     # update Score tickers
-    for i in range(55):
+    for i in range(76):
         if session['p1total'] >= i:
             session['p1s' + str(i)] = 'bg_AntiqueWhite'
         else:
