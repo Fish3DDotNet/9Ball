@@ -212,6 +212,12 @@ def updateSession(session):
         if str('p1ball' + str(i + 1)) not in session:
             session[str('p1ball' + str(i + 1))] = str('/static/img/'
                     + str(i + 1) + 'ball.gif')
+        if str('p2ball' + str(i + 1)) not in session:
+            session[str('p2ball' + str(i + 1))] = str('/static/img/'
+                    + str(i + 1) + 'ball.gif')
+        if str('p3ball' + str(i + 1)) not in session:
+            session[str('p3ball' + str(i + 1))] = str('/static/img/'
+                    + str(i + 1) + 'ball.gif')
 
     # Player Scores
 
@@ -420,6 +426,7 @@ def contextscore():
         'p2r13': session['p2r13'],
         'p2r14': session['p2r14'],
         'p2r15': session['p2r15'],
+
         'p1ball1': session['p1ball1'],
         'p1ball2': session['p1ball2'],
         'p1ball3': session['p1ball3'],
@@ -429,6 +436,27 @@ def contextscore():
         'p1ball7': session['p1ball7'],
         'p1ball8': session['p1ball8'],
         'p1ball9': session['p1ball9'],
+
+        'p2ball1': session['p2ball1'],
+        'p2ball2': session['p2ball2'],
+        'p2ball3': session['p2ball3'],
+        'p2ball4': session['p2ball4'],
+        'p2ball5': session['p2ball5'],
+        'p2ball6': session['p2ball6'],
+        'p2ball7': session['p2ball7'],
+        'p2ball8': session['p2ball8'],
+        'p2ball9': session['p2ball9'],
+
+        'p3ball1': session['p3ball1'],
+        'p3ball2': session['p3ball2'],
+        'p3ball3': session['p3ball3'],
+        'p3ball4': session['p3ball4'],
+        'p3ball5': session['p3ball5'],
+        'p3ball6': session['p3ball6'],
+        'p3ball7': session['p3ball7'],
+        'p3ball8': session['p3ball8'],
+        'p3ball9': session['p3ball9'],
+
         'p1s1': session['p1s1'],
         'p1s2': session['p1s2'],
         'p1s3': session['p1s3'],
@@ -560,7 +588,6 @@ def contextscore():
         'p2s53': session['p2s53'],
         'p2s54': session['p2s54'],
         'p2s55': session['p2s55'],
-
         'p2s56': session['p2s56'],
         'p2s57': session['p2s57'],
         'p2s58': session['p2s58'],
@@ -1042,6 +1069,8 @@ def valup():
         # hide ball
 
         session['p1ball' + str(ballval)] = ''
+
+    # update player 1,2 and Dead current rack Ball count
 
     if session['currentrack'] > 1:
         session['p1total'] = \
