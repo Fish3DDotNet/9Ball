@@ -52,3 +52,6 @@ p {
     border: 1px solid #ccc;
     padding: 1px 6px;
 }
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.2
