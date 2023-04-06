@@ -266,358 +266,12 @@ def updateSession(session):
                                   'no': 2345}, 'Nelson, Jana': {'sl': 2,
                                   'no': 1567}}}
 
-# def contexthome():
-#     contexthome = {
-#
-#         'm1t1': session['m1t1'],
-#         'm1p1': session['m1p1'],
-#         'm1p1no': session['m1p1no'],
-#         'm1p1sl': session['m1p1sl'],
-#         'm1in': session['m1in'],
-#         'm1p1saf': session['m1p1saf'],
-#         'm1p1sco': session['m1p1sco'],
-#         'm1p1poi': session['m1p1poi'],
-#         'm1t2': session['m1t2'],
-#         'm1p2': session['m1p2'],
-#         'm1p2no': session['m1p2no'],
-#         'm1p2sl': session['m1p2sl'],
-#         'm1p2saf': session['m1p2saf'],
-#         'm1p2sco': session['m1p2sco'],
-#         'm1p2poi': session['m1p2poi'],
-#         'm2t1': session['m2t1'],
-#         'm2p1': session['m2p1'],
-#         'm2p1no': session['m2p1no'],
-#         'm2p1sl': session['m2p1sl'],
-#         'm2in': session['m2in'],
-#         'm2p1saf': session['m2p1saf'],
-#         'm2p1sco': session['m2p1sco'],
-#         'm2p1poi': session['m2p1poi'],
-#         'm2t2': session['m2t2'],
-#         'm2p2': session['m2p2'],
-#         'm2p2no': session['m2p2no'],
-#         'm2p2sl': session['m2p2sl'],
-#         'm2p2saf': session['m2p2saf'],
-#         'm2p2sco': session['m2p2sco'],
-#         'm2p2poi': session['m2p2poi'],
-#         'm3t1': session['m3t1'],
-#         'm3p1': session['m3p1'],
-#         'm3p1no': session['m3p1no'],
-#         'm3p1sl': session['m3p1sl'],
-#         'm3in': session['m3in'],
-#         'm3p1saf': session['m3p1saf'],
-#         'm3p1sco': session['m3p1sco'],
-#         'm3p1poi': session['m3p1poi'],
-#         'm3t2': session['m3t2'],
-#         'm3p2': session['m3p2'],
-#         'm3p2no': session['m3p2no'],
-#         'm3p2sl': session['m3p2sl'],
-#         'm3p2saf': session['m3p2saf'],
-#         'm3p2sco': session['m3p2sco'],
-#         'm3p2poi': session['m3p2poi'],
-#         'm4t1': session['m4t1'],
-#         'm4p1': session['m4p1'],
-#         'm4p1no': session['m4p1no'],
-#         'm4p1sl': session['m4p1sl'],
-#         'm4in': session['m4in'],
-#         'm4p1saf': session['m4p1saf'],
-#         'm4p1sco': session['m4p1sco'],
-#         'm4p1poi': session['m4p1poi'],
-#         'm4t2': session['m4t2'],
-#         'm4p2': session['m4p2'],
-#         'm4p2no': session['m4p2no'],
-#         'm4p2sl': session['m4p2sl'],
-#         'm4p2saf': session['m4p2saf'],
-#         'm4p2sco': session['m4p2sco'],
-#         'm4p2poi': session['m4p2poi'],
-#         'm5t1': session['m5t1'],
-#         'm5p1': session['m5p1'],
-#         'm5p1no': session['m5p1no'],
-#         'm5p1sl': session['m5p1sl'],
-#         'm5in': session['m5in'],
-#         'm5p1saf': session['m5p1saf'],
-#         'm5p1sco': session['m5p1sco'],
-#         'm5p1poi': session['m5p1poi'],
-#         'm5t2': session['m5t2'],
-#         'm5p2': session['m5p2'],
-#         'm5p2no': session['m5p2no'],
-#         'm5p2sl': session['m5p2sl'],
-#         'm5p2saf': session['m5p2saf'],
-#         'm5p2sco': session['m5p2sco'],
-#         'm5p2poi': session['m5p2poi'],
-#         'teama': session['teama'],
-#         'teamb': session['teamb'],
-#         'teamascore': session['teamascore'],
-#         'teambscore': session['teambscore'],
-#         'teamssellectedinvisable' : session['teamssellectedinvisable'],
-#         'teamssellectedvisable': session['teamssellectedvisable']
-#     }
-#     return contexthome
-
 def contextbuild():
-    context={}
+    d={}
     for key in session:
-        context[key] = session[key]
+        d[key] = session[key]
 
-    # contextscore = {
-    #     'player1': session['player1'],
-    #     'player2': session['player2'],
-    #     'player1no': session['player1no'],
-    #     'player2no': session['player2no'],
-    #     'team1': session['team1'],
-    #     'team2': session['team2'],
-    #     'player1target': session['player1target'],
-    #     'player2target': session['player2target'],
-    #     'p1curval': session['p1curval'],
-    #     'p2curval': session['p2curval'],
-    #     'p3curval': session['p3curval'],
-    #     'p1r1': session['p1r1'],
-    #     'p1r2': session['p1r2'],
-    #     'p1r3': session['p1r3'],
-    #     'p1r4': session['p1r4'],
-    #     'p1r5': session['p1r5'],
-    #     'p1r6': session['p1r6'],
-    #     'p1r7': session['p1r7'],
-    #     'p1r8': session['p1r8'],
-    #     'p1r9': session['p1r9'],
-    #     'p1r10': session['p1r10'],
-    #     'p1r11': session['p1r11'],
-    #     'p1r12': session['p1r12'],
-    #     'p1r13': session['p1r13'],
-    #     'p1r14': session['p1r14'],
-    #     'p1r15': session['p1r15'],
-    #     'inr1': session['inr1'],
-    #     'inr2': session['inr2'],
-    #     'inr3': session['inr3'],
-    #     'inr4': session['inr4'],
-    #     'inr5': session['inr5'],
-    #     'inr6': session['inr6'],
-    #     'inr7': session['inr7'],
-    #     'inr8': session['inr8'],
-    #     'inr9': session['inr9'],
-    #     'inr10': session['inr10'],
-    #     'inr11': session['inr11'],
-    #     'inr12': session['inr12'],
-    #     'inr13': session['inr13'],
-    #     'inr14': session['inr14'],
-    #     'inr15': session['inr15'],
-    #     'dbr1': session['dbr1'],
-    #     'dbr2': session['dbr2'],
-    #     'dbr3': session['dbr3'],
-    #     'dbr4': session['dbr4'],
-    #     'dbr5': session['dbr5'],
-    #     'dbr6': session['dbr6'],
-    #     'dbr7': session['dbr7'],
-    #     'dbr8': session['dbr8'],
-    #     'dbr9': session['dbr9'],
-    #     'dbr10': session['dbr10'],
-    #     'dbr11': session['dbr11'],
-    #     'dbr12': session['dbr12'],
-    #     'dbr13': session['dbr13'],
-    #     'dbr14': session['dbr14'],
-    #     'dbr15': session['dbr15'],
-    #     'p2r1': session['p2r1'],
-    #     'p2r2': session['p2r2'],
-    #     'p2r3': session['p2r3'],
-    #     'p2r4': session['p2r4'],
-    #     'p2r5': session['p2r5'],
-    #     'p2r6': session['p2r6'],
-    #     'p2r7': session['p2r7'],
-    #     'p2r8': session['p2r8'],
-    #     'p2r9': session['p2r9'],
-    #     'p2r10': session['p2r10'],
-    #     'p2r11': session['p2r11'],
-    #     'p2r12': session['p2r12'],
-    #     'p2r13': session['p2r13'],
-    #     'p2r14': session['p2r14'],
-    #     'p2r15': session['p2r15'],
-    #
-    #     'p1ball1': session['p1ball1'],
-    #     'p1ball2': session['p1ball2'],
-    #     'p1ball3': session['p1ball3'],
-    #     'p1ball4': session['p1ball4'],
-    #     'p1ball5': session['p1ball5'],
-    #     'p1ball6': session['p1ball6'],
-    #     'p1ball7': session['p1ball7'],
-    #     'p1ball8': session['p1ball8'],
-    #     'p1ball9': session['p1ball9'],
-    #
-    #     'p2ball1': session['p2ball1'],
-    #     'p2ball2': session['p2ball2'],
-    #     'p2ball3': session['p2ball3'],
-    #     'p2ball4': session['p2ball4'],
-    #     'p2ball5': session['p2ball5'],
-    #     'p2ball6': session['p2ball6'],
-    #     'p2ball7': session['p2ball7'],
-    #     'p2ball8': session['p2ball8'],
-    #     'p2ball9': session['p2ball9'],
-    #
-    #     'p3ball1': session['p3ball1'],
-    #     'p3ball2': session['p3ball2'],
-    #     'p3ball3': session['p3ball3'],
-    #     'p3ball4': session['p3ball4'],
-    #     'p3ball5': session['p3ball5'],
-    #     'p3ball6': session['p3ball6'],
-    #     'p3ball7': session['p3ball7'],
-    #     'p3ball8': session['p3ball8'],
-    #     'p3ball9': session['p3ball9'],
-    #
-    #     'p1s1': session['p1s1'],
-    #     'p1s2': session['p1s2'],
-    #     'p1s3': session['p1s3'],
-    #     'p1s4': session['p1s4'],
-    #     'p1s5': session['p1s5'],
-    #     'p1s6': session['p1s6'],
-    #     'p1s7': session['p1s7'],
-    #     'p1s8': session['p1s8'],
-    #     'p1s9': session['p1s9'],
-    #     'p1s10': session['p1s10'],
-    #     'p1s11': session['p1s11'],
-    #     'p1s12': session['p1s12'],
-    #     'p1s13': session['p1s13'],
-    #     'p1s14': session['p1s14'],
-    #     'p1s15': session['p1s15'],
-    #     'p1s16': session['p1s16'],
-    #     'p1s17': session['p1s17'],
-    #     'p1s18': session['p1s18'],
-    #     'p1s19': session['p1s19'],
-    #     'p1s20': session['p1s20'],
-    #     'p1s21': session['p1s21'],
-    #     'p1s22': session['p1s22'],
-    #     'p1s23': session['p1s23'],
-    #     'p1s24': session['p1s24'],
-    #     'p1s25': session['p1s25'],
-    #     'p1s26': session['p1s26'],
-    #     'p1s27': session['p1s27'],
-    #     'p1s28': session['p1s28'],
-    #     'p1s29': session['p1s29'],
-    #     'p1s30': session['p1s30'],
-    #     'p1s31': session['p1s31'],
-    #     'p1s32': session['p1s32'],
-    #     'p1s33': session['p1s33'],
-    #     'p1s34': session['p1s34'],
-    #     'p1s35': session['p1s35'],
-    #     'p1s36': session['p1s36'],
-    #     'p1s37': session['p1s37'],
-    #     'p1s38': session['p1s38'],
-    #     'p1s39': session['p1s39'],
-    #     'p1s40': session['p1s40'],
-    #     'p1s41': session['p1s41'],
-    #     'p1s42': session['p1s42'],
-    #     'p1s43': session['p1s43'],
-    #     'p1s44': session['p1s44'],
-    #     'p1s45': session['p1s45'],
-    #     'p1s46': session['p1s46'],
-    #     'p1s47': session['p1s47'],
-    #     'p1s48': session['p1s48'],
-    #     'p1s49': session['p1s49'],
-    #     'p1s50': session['p1s50'],
-    #     'p1s51': session['p1s51'],
-    #     'p1s52': session['p1s52'],
-    #     'p1s53': session['p1s53'],
-    #     'p1s54': session['p1s54'],
-    #     'p1s55': session['p1s55'],
-    #     'p1s56': session['p1s56'],
-    #     'p1s57': session['p1s57'],
-    #     'p1s58': session['p1s58'],
-    #     'p1s59': session['p1s59'],
-    #     'p1s60': session['p1s60'],
-    #     'p1s61': session['p1s61'],
-    #     'p1s62': session['p1s62'],
-    #     'p1s63': session['p1s63'],
-    #     'p1s64': session['p1s64'],
-    #     'p1s65': session['p1s65'],
-    #     'p1s66': session['p1s66'],
-    #     'p1s67': session['p1s67'],
-    #     'p1s68': session['p1s68'],
-    #     'p1s69': session['p1s69'],
-    #     'p1s70': session['p1s70'],
-    #     'p1s71': session['p1s71'],
-    #     'p1s72': session['p1s72'],
-    #     'p1s73': session['p1s73'],
-    #     'p1s74': session['p1s74'],
-    #     'p1s75': session['p1s75'],
-    #
-    #     'p2s1': session['p2s1'],
-    #     'p2s2': session['p2s2'],
-    #     'p2s3': session['p2s3'],
-    #     'p2s4': session['p2s4'],
-    #     'p2s5': session['p2s5'],
-    #     'p2s6': session['p2s6'],
-    #     'p2s7': session['p2s7'],
-    #     'p2s8': session['p2s8'],
-    #     'p2s9': session['p2s9'],
-    #     'p2s10': session['p2s10'],
-    #     'p2s11': session['p2s11'],
-    #     'p2s12': session['p2s12'],
-    #     'p2s13': session['p2s13'],
-    #     'p2s14': session['p2s14'],
-    #     'p2s15': session['p2s15'],
-    #     'p2s16': session['p2s16'],
-    #     'p2s17': session['p2s17'],
-    #     'p2s18': session['p2s18'],
-    #     'p2s19': session['p2s19'],
-    #     'p2s20': session['p2s20'],
-    #     'p2s21': session['p2s21'],
-    #     'p2s22': session['p2s22'],
-    #     'p2s23': session['p2s23'],
-    #     'p2s24': session['p2s24'],
-    #     'p2s25': session['p2s25'],
-    #     'p2s26': session['p2s26'],
-    #     'p2s27': session['p2s27'],
-    #     'p2s28': session['p2s28'],
-    #     'p2s29': session['p2s29'],
-    #     'p2s30': session['p2s30'],
-    #     'p2s31': session['p2s31'],
-    #     'p2s32': session['p2s32'],
-    #     'p2s33': session['p2s33'],
-    #     'p2s34': session['p2s34'],
-    #     'p2s35': session['p2s35'],
-    #     'p2s36': session['p2s36'],
-    #     'p2s37': session['p2s37'],
-    #     'p2s38': session['p2s38'],
-    #     'p2s39': session['p2s39'],
-    #     'p2s40': session['p2s40'],
-    #     'p2s41': session['p2s41'],
-    #     'p2s42': session['p2s42'],
-    #     'p2s43': session['p2s43'],
-    #     'p2s44': session['p2s44'],
-    #     'p2s45': session['p2s45'],
-    #     'p2s46': session['p2s46'],
-    #     'p2s47': session['p2s47'],
-    #     'p2s48': session['p2s48'],
-    #     'p2s49': session['p2s49'],
-    #     'p2s50': session['p2s50'],
-    #     'p2s51': session['p2s51'],
-    #     'p2s52': session['p2s52'],
-    #     'p2s53': session['p2s53'],
-    #     'p2s54': session['p2s54'],
-    #     'p2s55': session['p2s55'],
-    #     'p2s56': session['p2s56'],
-    #     'p2s57': session['p2s57'],
-    #     'p2s58': session['p2s58'],
-    #     'p2s59': session['p2s59'],
-    #     'p2s60': session['p2s60'],
-    #     'p2s61': session['p2s61'],
-    #     'p2s62': session['p2s62'],
-    #     'p2s63': session['p2s63'],
-    #     'p2s64': session['p2s64'],
-    #     'p2s65': session['p2s65'],
-    #     'p2s66': session['p2s66'],
-    #     'p2s67': session['p2s67'],
-    #     'p2s68': session['p2s68'],
-    #     'p2s69': session['p2s69'],
-    #     'p2s70': session['p2s70'],
-    #     'p2s71': session['p2s71'],
-    #     'p2s72': session['p2s72'],
-    #     'p2s73': session['p2s73'],
-    #     'p2s74': session['p2s74'],
-    #     'p2s75': session['p2s75'],
-    #
-    #     'submitrackvisible': session['submitrackvisible'],
-    #     'submitrackinvisible': session['submitrackinvisible']
-    # }
-
-    return context
+    return d
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
 def update(id):
@@ -705,24 +359,12 @@ def home():
 @app.route('/updatehome', methods=['POST', 'GET'])
 def updatehome():
     if request.method == "POST":
+        formdata = ['t1', 't2', 'p1', 'p2', 'p1no', 'p1no', 'in',
+                    'p1saf', 'p2saf', 'p1sco', 'p2sco', 'p1poi', 'p2poi']
 
         for i in range(5):
-            session['m' + str(i + 1) + 't1'] = request.form['m' + str(i + 1) + 't1']
-            session['m' + str(i + 1) + 'p1'] = request.form['m' + str(i + 1) + 'p1']
-            session['m' + str(i + 1) + 'p1no'] = request.form['m' + str(i + 1) + 'p1no']
-            session['m' + str(i + 1) + 'p1sl'] = request.form['m' + str(i + 1) + 'p1sl']
-            session['m' + str(i + 1) + 'in'] = request.form['m' + str(i + 1) + 'in']
-            session['m' + str(i + 1) + 'p1saf'] = request.form['m' + str(i + 1) + 'p1saf']
-            session['m' + str(i + 1) + 'p1sco'] = request.form['m' + str(i + 1) + 'p1sco']
-            session['m' + str(i + 1) + 'p1poi'] = request.form['m' + str(i + 1) + 'p1poi']
-
-            session['m' + str(i + 1) + 't2'] = request.form['m' + str(i + 1) + 't2']
-            session['m' + str(i + 1) + 'p2'] = request.form['m' + str(i + 1) + 'p2']
-            session['m' + str(i + 1) + 'p2no'] = request.form['m' + str(i + 1) + 'p2no']
-            session['m' + str(i + 1) + 'p2sl'] = request.form['m' + str(i + 1) + 'p2sl']
-            session['m' + str(i + 1) + 'p2saf'] = request.form['m' + str(i + 1) + 'p2saf']
-            session['m' + str(i + 1) + 'p2sco'] = request.form['m' + str(i + 1) + 'p2sco']
-            session['m' + str(i + 1) + 'p2poi'] = request.form['m' + str(i + 1) + 'p2poi']
+            for s in formdata:
+                session['m' + str(i + 1) + s] = request.form['m' + str(i + 1) + s]
 
         context = {}; context = contextbuild()
 
@@ -802,26 +444,12 @@ def teamselect():
             session['teamb'] = teamsSelected[1][0].replace('[','') +"-"+ teamsSelected[1][1]
             session['teambno'] = teamsSelected[1][0].replace('[','')
 
-            context = {
-                'step': session['step'],
-                'teama': session['teama'],
-                'teamb': session['teamb']
-            }
-
-            return context
-    def step3(): # Confirm Teams
-        session['step'] = 3
-        letsgo = request.form.get('letsgo')
-        if letsgo == "Lets Go!":
             session['teamssellectedinvisable'] = ''
             session['teamssellectedvisable'] = 'hidden'
 
-            # teamareturn = teams.query.filter(teams.divname == div_selected, teams.teamno == session['teamano'])
-            # for t in teamareturn:
-            #     print('')
-
             context = {};
             context = contextbuild()
+
             return context
 
     if request.method == "POST":
@@ -829,10 +457,8 @@ def teamselect():
             context = step1()
         elif session['step'] == 1:
             context = step2()
-        elif session['step'] == 2:
-            context = step3()
 
-        if session['step'] < 3:
+        if session['step'] < 2:
             return render_template('teamselect.html',**context)
         else:
             context = {};
@@ -1027,6 +653,8 @@ def inning():
 
 @app.route('/valup', methods=['POST', 'GET'])
 def valup():
+    x = session["currentmatch"]
+
     if "currentrack" not in session:
         updateSession(session)
 
@@ -1130,17 +758,34 @@ def valup():
 
         # if Player 1 reaches target highlight all Green
         if session['p1total'] >= int(session['player1target']):
+            p21 = str(session['m'+str(x)+'p2sl'])
+            p22 = str(session['p2total'])
             if session['p1total'] >= i:
                 session['p1s' + str(i)] = 'bg_green'
             else:
                 session['p1s' + str(i)] = ''
+            # update home screen player score
+            session['m'+str(x)+'p1sco'] = session['p1total']
+            session['m'+str(x)+'p2sco'] = session['p2total']
+            # update home screen team points
+            session['m'+str(x)+'p1poi'] = session['scoretable']['som'][p21][p22]['w']
+            session['m'+str(x)+'p2poi'] = session['scoretable']['som'][p21][p22]['l']
+
 
         # if Player 2 reaches target highlight all Green
         if session['p2total'] >= int(session['player2target']):
+            p11 = str(session['m'+str(x)+'p1sl'])
+            p12 = str(session['p1total'])
             if session['p2total'] >= i:
                 session['p2s' + str(i)] = 'bg_green'
             else:
                 session['p2s' + str(i)] = ''
+            # update home screen player score
+            session['m'+str(x)+'p1sco'] = session['p1total']
+            session['m'+str(x)+'p2sco'] = session['p2total']
+            # update home screen team points
+            session['m'+str(x)+'p1poi'] = session['scoretable']['som'][p11][p12]['l']
+            session['m'+str(x)+'p2poi'] = session['scoretable']['som'][p11][p12]['w']
 
     # if rack complete show submit rack
     if session['p1curval'] + session['p2curval'] \
@@ -1213,6 +858,11 @@ def submitRack():
     session['submitrackinvisible'] = ''
 
     return redirect(url_for('racks'))
+
+
+@app.route('/submitRack', methods=['POST', 'GET'])
+def submitMatch():
+    pass
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
