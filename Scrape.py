@@ -36,7 +36,7 @@ def login():
     pw.send_keys("")
     pw.send_keys(Keys.RETURN)
 
-    sleep(2)
+    sleep(3)
 
     for i in range(3):
 
@@ -118,8 +118,6 @@ def iterate(driver,div,divno):
     for t in range(len(teams)-1):
         getdata(driver,t+1,div,divno)
 
-
-
 def processAll(driver):
 
     for i in range(3):
@@ -136,8 +134,68 @@ def processAll(driver):
         sleep(3)
 
 
-plist = []
+def testcode():
+    options = Options()
+    options.headless = False
 
+
+    # Create webdriver object
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+
+    # Get the website
+    driver.get("https://accounts.poolplayers.com/login")
+
+
+    # Make Python sleep for some time
+    sleep(2)
+
+    email = driver.find_element(By.ID, 'email')
+    pw = driver.find_element(By.ID, 'password')
+    email.send_keys("bmffish@gmail.com")
+    pw.send_keys("D3riJP0g")
+    pw.send_keys(Keys.RETURN)
+
+    sleep(4)
+    np = driver.find_element(By.CLASS_NAME, 'button_button__1lvaa')
+    np.send_keys(Keys.RETURN)
+
+
+
+    # Mon Double Jeopardy 9 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356014/rosters/")
+    # Tuesday W. P. 9 Ball Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356001/rosters/")
+    # Tuesday 9-Ball Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/355993/rosters/")
+    # Tuesday Double Jeopardy 9 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356006/rosters/")
+    # Wed Double Jeopardy 2 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/359183/rosters/")
+    # Wed Double Jeopardy 9 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356007/rosters/")
+    # Thurs Double Jeopardy 1 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356008/rosters/")
+    # Thu Double Jeopardy 9- 2 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356009/rosters/")
+    # Sat Double Jeopardy 9 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356010/rosters/")
+    # Sat Double Jeopardy 9-2 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356016/rosters/")
+    # Sunday Double Jeopardy 1 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356011/rosters/")
+    # Sunday Double Jeopardy 2 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356012/rosters/")
+    # Sunday Double Jeopardy 3 Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356013/rosters/")
+    # Deer Park Dbl Jeopardy Rosters
+    sleep(4);driver.get("https://league.poolplayers.com/inland/divisions/356017/rosters/")
+
+    sleep(10)
+
+# driver = testcode()
+
+
+plist = []
 driver = login()
 sleep(3)
 processAll(driver)

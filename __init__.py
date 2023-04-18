@@ -33,15 +33,8 @@ txtFilename = os.path.join(SITE_ROOT, 'static/data',
 app.app_context().push()
 db.create_all()
 
-def createdb(txtFilename):## MARKED FOR DELETION!!!!
+def createdb(txtFilename):
     with open(txtFilename, encoding='utf-8') as csvfile:
-        # def row_count(filename):
-        #     with open(filename) as in_file:
-        #         return sum(1 for _ in in_file)
-        #
-        # csvRead = csv.DictReader(csvfile)
-        # last_line_number = row_count(txtFilename)
-
 
         data = list(csv.reader(csvfile, delimiter=","))
 
@@ -67,47 +60,6 @@ def createdb(txtFilename):## MARKED FOR DELETION!!!!
         except:
             return "There was a error adding Player"
 
-    # for team in teams:
-    #     db.session.delete(team)
-    #     db.session.commit()
-"""
-def convjson(txtFilename):
-    # creating a dictionary
-    teams = {}
-    t = {}
-    p = {}
-    # reading the data from CSV file
-    with open(txtFilename, encoding='utf-8') as csvfile:
-        def row_count(filename):
-            with open(filename) as in_file:
-                return sum(1 for _ in in_file)
-
-        csvRead = csv.DictReader(csvfile)
-        last_line_number = row_count(txtFilename)
-        team = "0"
-        # Converting rows into dictionary and adding it to data
-        for rows in csvRead:
-            if rows["Team"] != team:
-                if team == "0":
-                    team = rows["Team"]
-                    t = {rows["Team"]:{}}
-                    t[rows["Team"]].update({rows["name"]: {"no":rows["no"],"sl": rows["sl"]}})
-                elif rows["Team"] != team:
-                    teams.update(t)
-                    team = rows["Team"]
-                    t = {rows["Team"]: {}}
-                    t[rows["Team"]].update({rows["name"]: {"no": rows["no"], "sl": rows["sl"]}})
-                else:
-                    pass
-            else:
-                t[rows["Team"]].update({rows["name"]: {"no":rows["no"],"sl": rows["sl"]}})
-                if last_line_number == 2:
-                    teams.update(t)
-            last_line_number -= 1
-
-    return teams
-"""
-
 def updateSession(session):
 
     if 'scoretable' not in session:
@@ -119,10 +71,10 @@ def updateSession(session):
 
     # <editor-fold desc="# Scoresheet Data">
 
-    keys = ['key1','key2']
-    for i in keys:
-        if i not in session:
-            session[i] = ''
+    # keys = ['key1','key2']
+    # for i in keys:
+    #     if i not in session:
+    #         session[i] = ''
 
 
     if 'submitrackvisible' not in session:
@@ -200,7 +152,7 @@ def updateSession(session):
         if str('p1r' + str(i + 1)) not in session:  # Player1 score
             session[str('p1r' + str(i + 1))] = ''
         if str('inr' + str(i + 1)) not in session:  # Innings
-            session[str('inr' + str(i + 1))] = ""
+            session[str('inr' + str(i + 1))] = ''
         if str('dbr' + str(i + 1)) not in session:  # Dead Balls
             session[str('dbr' + str(i + 1))] = ''
         if str('p2r' + str(i + 1)) not in session:  # Player2 score
@@ -228,43 +180,13 @@ def updateSession(session):
             session[str('p2s' + str(i + 1))] = ''
 
     # Main Score sheet
-
+    mainScoreSheet = ['t1', 't2', 'p1', 'p2', 'p1no', 'p2no', 'p1sl', 'p2sl',
+                      'p1saf', 'p2saf', 'p1sco', 'p2sco', 'p1poi', 'p2poi', 'in',
+                      'buttonvis', 'numvis']
     for i in range(5):
-        if str('m' + str(i + 1) + 't1') not in session:  # Team 1 no
-            session[str('m' + str(i + 1) + 't1')] = '-'
-        if str('m' + str(i + 1) + 't2') not in session:  # Team 2 no
-            session[str('m' + str(i + 1) + 't2')] = '-'
-        if str('m' + str(i + 1) + 'p1') not in session:  # Player 1 name
-            session[str('m' + str(i + 1) + 'p1')] = '-'
-        if str('m' + str(i + 1) + 'p2') not in session:  # Player 2 name
-            session[str('m' + str(i + 1) + 'p2')] = '-'
-        if str('m' + str(i + 1) + 'p1no') not in session:  # Player 1 number
-            session[str('m' + str(i + 1) + 'p1no')] = '-'
-        if str('m' + str(i + 1) + 'p2no') not in session:  # Player 2 number
-            session[str('m' + str(i + 1) + 'p2no')] = '-'
-        if str('m' + str(i + 1) + 'p1sl') not in session:  # Player 1 Skill Level
-            session[str('m' + str(i + 1) + 'p1sl')] = '-'
-        if str('m' + str(i + 1) + 'p2sl') not in session:  # Player 2 Skill Level
-            session[str('m' + str(i + 1) + 'p2sl')] = '-'
-        if str('m' + str(i + 1) + 'p1saf') not in session:  # Player 1 Safetys
-            session[str('m' + str(i + 1) + 'p1saf')] = '-'
-        if str('m' + str(i + 1) + 'p2saf') not in session:  # Player 2 Safetys
-            session[str('m' + str(i + 1) + 'p2saf')] = '-'
-        if str('m' + str(i + 1) + 'p1sco') not in session:  # Player 1 Score
-            session[str('m' + str(i + 1) + 'p1sco')] = '-'
-        if str('m' + str(i + 1) + 'p2sco') not in session:  # Player 2 Score
-            session[str('m' + str(i + 1) + 'p2sco')] = '-'
-        if str('m' + str(i + 1) + 'p1poi') not in session:  # Player 1 Points
-            session[str('m' + str(i + 1) + 'p1poi')] = '-'
-        if str('m' + str(i + 1) + 'p2poi') not in session:  # Player 2 Points
-            session[str('m' + str(i + 1) + 'p2poi')] = '-'
-        if str('m' + str(i + 1) + 'in') not in session:  # Match Innings
-            session[str('m' + str(i + 1) + 'in')] = '-'
-
-        if 'players' not in session:
-            session['players'] = {'team1': {'Nelson, Jeff': {'sl': 3,
-                                  'no': 2345}, 'Nelson, Jana': {'sl': 2,
-                                  'no': 1567}}}
+        for l in mainScoreSheet:
+            if str('m' + str(i + 1) + l) not in session:
+                session[str('m' + str(i + 1) + l)] = '-'
 
 def contextbuild():
     d={}
@@ -272,6 +194,19 @@ def contextbuild():
         d[key] = session[key]
 
     return d
+
+def updateteamScores():
+    session['teamascore'] = 0
+    session['teambscore'] = 0
+    for i in range(5):
+        if session['m'+str(i+1)+'p1poi'] == '-':
+            return
+        if session['m'+str(i+1)+'t1'] == session['teamano']:
+            session['teamascore'] = session['teamascore'] + int(session['m' + str(i + 1) + 'p1poi'])
+            session['teambscore'] = session['teambscore'] + int(session['m' + str(i + 1) + 'p2poi'])
+        else:
+            session['teamascore'] = session['teamascore'] + int(session['m' + str(i + 1) + 'p2poi'])
+            session['teambscore'] = session['teambscore'] + int(session['m' + str(i + 1) + 'p1poi'])
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
 def update(id):
@@ -350,11 +285,31 @@ def reloadteams():
 
 @app.route('/home')
 def home():
+    updateteamScores()
 
     context = {}; context = contextbuild()
 
     return render_template(
         'home.html', **context)
+
+
+@app.route('/editsession', methods=['POST', 'GET'])
+def editsession():
+    if request.method == "POST":
+        for k in session:
+            if type(session[k]) == int:
+                session[k] = int(request.form[k])
+            else:
+                session[k] = request.form[k]
+
+        context = {}; context = contextbuild()
+
+        return render_template('home.html',**context)
+    else:
+        context = {}; context = contextbuild()
+
+        return render_template(
+            'editsession.html', context=context)
 
 @app.route('/updatehome', methods=['POST', 'GET'])
 def updatehome():
@@ -446,6 +401,9 @@ def teamselect():
 
             session['teamssellectedinvisable'] = ''
             session['teamssellectedvisable'] = 'hidden'
+            session['m1buttonvis'] = ''
+            session['m1numvis'] = 'hidden'
+
 
             context = {};
             context = contextbuild()
@@ -534,12 +492,6 @@ def playerselect():
         session["player2target"] = str(session["scoretable"]["psl"][str(curpsl2)])
 
         return redirect(url_for('home'))
-
-
-
-
-
-
 
     if request.method == "POST":
         if session['step'] == 0:
@@ -705,6 +657,7 @@ def valup():
                     + str(plrval) + 'curval'] + 2
 
         # hide ball
+
         if plrval == 1:
             session['p1ball' + str(ballval)] = '/static/img/' \
             + str(ballval) + 'balla.gif'
@@ -872,6 +825,28 @@ def index():
 
     updateSession(session)
     return redirect(url_for('home'))
+
+def replace_ifelif_example():
+    def first():
+        print('Calling first')
+
+    def second():
+        print('Calling second')
+
+    def third():
+        print('Calling third')
+
+    def default():
+        print('Calling default')
+
+    var: int = 4
+
+    funcs: dict = {0: first,
+                  1: second,
+                  2: third}
+
+    final = funcs.get(var, default)
+    final()
 
 if __name__ == '__main__':
     app.run(debug=True)

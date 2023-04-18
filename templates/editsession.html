@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<br>
+<form action="/editsession" METHOD="POST">
+<div class="row justify-content-center">
+   <table class="table table-sm table-primary table-striped w-50">
+      <h4>
+         <thead>
+            <tr>
+               <th scope="col">Key</th>
+               <th scope="col">Data</th>
+            </tr>
+         </thead>
+
+
+{% for k, v in context.items() %}
+         <tr>
+         <td>{{k}}</td>
+         <td><input type="text" name="{{k}}" value="{{v}}"></td>
+         </tr>
+{% endfor %}
+      </h4>
+   </table>
+</div>
+   <div class="row">
+	<div class="col">
+		<input type="submit" value="Update" class="btn btn-secondary">
+	</div>
+</div>
+</form>
+{% endblock %}
