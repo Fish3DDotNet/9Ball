@@ -292,7 +292,6 @@ def home():
     return render_template(
         'home.html', **context)
 
-
 @app.route('/editsession', methods=['POST', 'GET'])
 def editsession():
     if request.method == "POST":
@@ -811,7 +810,6 @@ def submitRack():
     session['submitrackinvisible'] = ''
 
     return redirect(url_for('racks'))
-
 
 @app.route('/submitRack', methods=['POST', 'GET'])
 def submitMatch():
